@@ -1,7 +1,0 @@
-package objetcs;
-
-public class Object {
-	
-	int positionX;
-
-}

@@ -1,9 +1,0 @@
-package core;
-
-import java.util.ArrayList;
-
-public class Map {
-	
-	ArrayList<Room> rooms;
-
-}

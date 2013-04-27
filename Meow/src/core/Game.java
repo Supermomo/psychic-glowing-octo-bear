@@ -40,6 +40,9 @@ public class Game extends BasicGameState
 	String imgHuman = "rsrc/"; //TODO
 	Image cursor; 
 	Image cursorDown;
+	Image cursorHover;
+	int cursorOffsetx = 30;
+	int cursorOffsety = 30;
 	
 	//humans
 	private Human dad;
@@ -84,7 +87,8 @@ public class Game extends BasicGameState
 		
 		cursor = new Image("rsrc/paw.png");
 		cursorDown = new Image("rsrc/paw_down.png");
-		arg0.setMouseCursor(cursor, 10, 10);
+		cursorHover = new Image("rsrc/paw_up.png");
+		arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
 	}
 
 	@Override
@@ -111,12 +115,34 @@ public class Game extends BasicGameState
 		}
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-			arg0.setMouseCursor(cursorDown, 10, 10);
-		} else {
-			arg0.setMouseCursor(cursor, 10, 10);
+			arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
+		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
+			arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
+		}else {
+			arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
 		}
 		
 		
+	}
+	
+	private boolean checkIfHover(int cursorX, int cursorY){
+		
+		for(Room room : this.map.getRooms()){
+			
+			if (cursorX > room.getPositionX() && cursorX < room.getPositionX() + room.getWidth()
+					&&
+					cursorY > room.getPositionY() && cursorY < room.getPositionY() + room.getHeight()){
+				
+				for(Object obj : room.getObj()){
+					if(cursorX > room.getPositionX() + obj.getPositionX() && cursorX < room.getPositionX() + obj.getWidth()
+							&&
+							cursorY > room.getPositionY() + obj.getPositionY() && cursorY < room.getPositionY() + obj.getHeight()){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }

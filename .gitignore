@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+Meow/.classpath
+Meow/.settings
+Meow/.project

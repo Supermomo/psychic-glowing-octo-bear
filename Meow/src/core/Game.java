@@ -82,7 +82,7 @@ public class Game extends BasicGameState
 		Usable bowl = new Usable(kitchen.getPositionX()+10, kitchen.getPositionY()+10, 25, 25);
 		kitchen.getObj().add(bowl);
 		Object table = new Object(kitchen.getPositionX()+60, kitchen.getPositionY()+85, 200, 100);
-		lounge.getObj().add(table);
+		kitchen.getObj().add(table);
 		Usable oven = new Usable(kitchen.getPositionX()+290, kitchen.getPositionY()+50, 50, 70);
 		kitchen.getObj().add(oven);
 		
@@ -154,9 +154,10 @@ public class Game extends BasicGameState
 					cursorY > room.getPositionY() && cursorY < room.getPositionY() + room.getHeight()){
 				
 				for(Object obj : room.getObj()){
-					if(cursorX > room.getPositionX() + obj.getPositionX() && cursorX < room.getPositionX() + obj.getWidth()
+					
+					if(cursorX > obj.getPositionX() && cursorX < obj.getPositionX() + obj.getWidth()
 							&&
-							cursorY > room.getPositionY() + obj.getPositionY() && cursorY < room.getPositionY() + obj.getHeight()){
+							cursorY > obj.getPositionY() && cursorY < obj.getPositionY() + obj.getHeight()){
 						return true;
 					}
 				}
@@ -181,9 +182,11 @@ public class Game extends BasicGameState
 	
 	private int getClickedObject(int cursorX, int cursorY, Room room) {
 		for(Object obj : room.getObj()){
-			if(cursorX > room.getPositionX() + obj.getPositionX() && cursorX < room.getPositionX() + obj.getWidth()
+			
+			if(cursorX > obj.getPositionX() && cursorX < obj.getPositionX() + obj.getWidth()
 					&&
-					cursorY > room.getPositionY() + obj.getPositionY() && cursorY < room.getPositionY() + obj.getHeight()){
+					cursorY > obj.getPositionY() && cursorY < obj.getPositionY() + obj.getHeight()){
+				
 				return room.getObj().indexOf(obj);
 			}
 		}

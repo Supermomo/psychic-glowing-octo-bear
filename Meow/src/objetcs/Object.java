@@ -26,6 +26,8 @@ public class Object {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.img = new Image(image);
+		this.width = img.getWidth();
+		this.height = img.getHeight();
 	}
 	
 	public int getPositionX() {

@@ -38,6 +38,8 @@ public class Game extends BasicGameState
 	String televisionOn = "rsrc/tv-on.png";
 	String imgCouch = "rsrc/couch.png";
 	String imgHuman = "rsrc/"; //TODO
+	Image cursor; 
+	Image cursorDown;
 	
 	//humans
 	private Human dad;
@@ -80,6 +82,9 @@ public class Game extends BasicGameState
 		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
 				lounge.getPositionY()+lounge.getHeight()/2, imgHuman, map);
 		
+		cursor = new Image("rsrc/paw.png");
+		cursorDown = new Image("rsrc/paw_down.png");
+		arg0.setMouseCursor(cursor, 10, 10);
 	}
 
 	@Override
@@ -104,6 +109,14 @@ public class Game extends BasicGameState
 			dad.update();
 			timer = 0;
 		}
+		
+		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			arg0.setMouseCursor(cursorDown, 10, 10);
+		} else {
+			arg0.setMouseCursor(cursor, 10, 10);
+		}
+		
+		
 	}
 
 }

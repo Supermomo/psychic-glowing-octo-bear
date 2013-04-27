@@ -45,6 +45,10 @@ public class Room {
 		
 	}
 	
+	public int getHumans(){
+		return nbHuman;
+	}
+	
 	public void draw(Graphics g){
 		g.drawImage(img, this.positionX, this.positionY);
 	}

@@ -42,15 +42,35 @@ public class Human {
 	
 	public void update() {
 		Random rand = new Random();
-		int randomInt = rand.nextInt(100);
-		if (randomInt <= pbedroom1)
-			room = map.getRooms().get(0);
-		else if (randomInt <= pbedroom2)
-			room = map.getRooms().get(1);
-		else if (randomInt <= pkitchen)
-			room = map.getRooms().get(2);
-		else 
-			room = map.getRooms().get(3);
+		boolean ok = false;
+		while(!ok)
+		{
+			int randomInt = rand.nextInt(100);
+			if (randomInt <= pbedroom1)
+			{
+				room = map.getRooms().get(0);
+				if(room.getHumans() == 0)
+					ok = true;
+			}
+			else if (randomInt <= pbedroom2)
+			{
+				room = map.getRooms().get(1);
+				if(room.getHumans() == 0)
+					ok = true;
+			}
+			else if (randomInt <= pkitchen)
+			{
+				room = map.getRooms().get(2);
+				if(room.getHumans() < 2)
+					ok = true;
+			}
+			else
+			{
+				room = map.getRooms().get(3);
+				if(room.getHumans() < 3)
+					ok = true;
+			}
+		}
 
 		positionX = room.getPositionX()+room.getWidth()/2;
 		positionY = room.getPositionY()+room.getHeight()/2;

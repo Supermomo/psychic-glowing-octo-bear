@@ -25,7 +25,7 @@ public class Lounge extends Room{
 		nbHuman++;
 		
 		h.setPositionX(this.getPositionX()+30);
-		h.setPositionY(this.getPositionY()+60+60*(nbHuman-1));
+		h.setPositionY(this.getPositionY()+45+55*(nbHuman-1));
 		h.changePos();
 	}
 	

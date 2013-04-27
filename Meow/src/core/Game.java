@@ -63,6 +63,8 @@ public class Game extends BasicGameState
 	
 	//humans
 	private Human dad;
+	private Human mom;
+	private Human girl;
 	
 	private Cat cat;
 	
@@ -97,11 +99,15 @@ public class Game extends BasicGameState
 		kitchen.getObj().add(bowl);
 		Table table = new Table(kitchen.getPositionX()+60, kitchen.getPositionY()+85, imgTable);
 		kitchen.getObj().add(table);
-		MicroWave oven = new MicroWave(kitchen.getPositionX()+290, kitchen.getPositionY()+50, imgMicro, imgMicroOn);
+		MicroWave oven = new MicroWave(kitchen.getPositionX()+270, kitchen.getPositionY()+50, imgMicro, imgMicroOn);
 		kitchen.getObj().add(oven);
 		
 		//humans
 		dad = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
+				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
+		mom = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
+				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
+		girl = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
 				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
 		
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
@@ -127,6 +133,8 @@ public class Game extends BasicGameState
 			}
 		}
 		dad.draw(g);
+		mom.draw(g);
+		girl.draw(g);
 		cat.draw(g);
 	}
 
@@ -137,9 +145,15 @@ public class Game extends BasicGameState
 		timer += arg2;
 		if (timer > 10000) {
 			dad.getRoom().leave(dad);
+			mom.getRoom().leave(mom);
+			girl.getRoom().leave(girl);
 			dad.update();
+			mom.update();
+			girl.update();
 			timer = 0;
 			dad.getRoom().action(dad);
+			mom.getRoom().action(mom);
+			girl.getRoom().action(girl);
 		}
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){

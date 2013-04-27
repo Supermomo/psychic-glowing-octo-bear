@@ -28,6 +28,7 @@ public class Game extends BasicGameState
 {
 
 	public Map map;
+	private int timer;
 	Room bedroom1, bedroom2, kitchen, lounge;
 	String imgBed1 = "rsrc/Bedroom1.png";
 	String imgBed2 = "rsrc/Bedroom2.png";
@@ -36,6 +37,10 @@ public class Game extends BasicGameState
 	String television = "rsrc/tv.png";
 	String televisionOn = "rsrc/tv-on.png";
 	String imgCouch = "rsrc/couch.png";
+	String imgHuman = "rsrc/"; //TODO
+	
+	//humans
+	private Human dad;
 	
 	@Override
 	public int getID() {
@@ -71,6 +76,9 @@ public class Game extends BasicGameState
 		Usable oven = new Usable(kitchen.getPositionX()+290, kitchen.getPositionY()+50, 50, 70);
 		kitchen.getObj().add(oven);
 		
+		//humans
+		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
+				lounge.getPositionY()+lounge.getHeight()/2, imgHuman, map);
 		
 	}
 
@@ -84,13 +92,18 @@ public class Game extends BasicGameState
 				o.draw(g);
 			}
 		}
+		dad.draw(g);
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		
+		timer += arg2;
+		if (timer > 10000) {
+			dad.update();
+			timer = 0;
+		}
 	}
 
 }

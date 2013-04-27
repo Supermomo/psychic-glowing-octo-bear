@@ -17,4 +17,8 @@ public class Couch extends Usable{
 	public void draw(Graphics g){
 		g.drawImage(this.getImg(), this.getPositionX(), this.getPositionY());
 	}
+	
+	public void sit() {
+		//TODO
+	}
 }

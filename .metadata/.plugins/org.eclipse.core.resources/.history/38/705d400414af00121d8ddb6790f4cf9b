@@ -1,0 +1,5 @@
+package objetcs;
+
+public class Usable extends Object {
+
+}

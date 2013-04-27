@@ -1,0 +1,10 @@
+package core;
+
+import java.util.ArrayList;
+
+import room.Room;
+
+public class Map {
+	
+	private ArrayList<Room> rooms;
+}

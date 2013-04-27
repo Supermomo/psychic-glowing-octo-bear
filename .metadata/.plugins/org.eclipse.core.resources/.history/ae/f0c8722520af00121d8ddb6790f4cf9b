@@ -1,0 +1,22 @@
+package room;
+
+import java.util.ArrayList;
+
+import org.newdawn.slick.Image;
+
+import objetcs.Object;
+
+public class Room {
+	
+	private ArrayList<Object> obj;
+	private int PositionX;
+	private int PositionY;
+	private Image img;
+	
+	public Room(int x, int y)
+	{
+		PositionX = x;
+		PositionY = y;
+	}
+
+}

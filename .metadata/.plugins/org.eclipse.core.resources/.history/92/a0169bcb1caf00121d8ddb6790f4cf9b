@@ -1,0 +1,11 @@
+package core;
+
+import java.util.ArrayList;
+
+import room.Room;
+
+public class Map {
+	
+	ArrayList<Room> rooms;
+
+}

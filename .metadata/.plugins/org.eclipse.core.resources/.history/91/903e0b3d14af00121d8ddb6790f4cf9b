@@ -1,0 +1,9 @@
+package room;
+
+import java.util.ArrayList;
+
+public class Room {
+	
+	ArrayList<Objetcs> obj;
+
+}

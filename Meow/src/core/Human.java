@@ -23,6 +23,8 @@ public class Human {
 	private Image debout;
 	private Map map;
 	
+	public int timer;
+	
 	private boolean isDebout;
 	
 	public Human(Room room, int positionX, int positionY, String assis, String debout, Map map) throws SlickException{
@@ -34,6 +36,7 @@ public class Human {
 		this.debout = new Image(debout);
 		this.map = map;
 		isDebout = true;
+		timer = 0;
 	}
 
 	public void action() {

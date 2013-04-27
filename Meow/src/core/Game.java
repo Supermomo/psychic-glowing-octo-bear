@@ -32,7 +32,9 @@ public class Game extends BasicGameState
 {
 
 	public Map map;
-	private int timer;
+
+	private int mouseTimer;
+	
 	Room bedroom1, bedroom2, kitchen, lounge;
 	String imgBed1 = "rsrc/Bedroom1.png";
 	String imgBed2 = "rsrc/Bedroom2.png";
@@ -50,6 +52,9 @@ public class Game extends BasicGameState
 	String imgBowl = "rsrc/bowl.png";
 	
 	String imgCat = "rsrc/cat.png";
+	String imgBackground = "rsrc/background.png";
+	
+	Image background;
 	
 	Image cursor; 
 	Image cursorDown;
@@ -122,11 +127,22 @@ public class Game extends BasicGameState
 		
 		arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
 		cursorRegularActivated = true;
+		
+		dad.timer = 7000;
+		mom.timer = 4000;
+		girl.timer = 0;
+		
+		mouseTimer = 0;
+		
+		background = new Image(imgBackground);
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
+		
+		g.drawImage(background, -1, 0);
+		
 		for(Room r : map.getRooms())
 		{
 			r.draw(g);
@@ -144,22 +160,33 @@ public class Game extends BasicGameState
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		timer += arg2;
-		if (timer > 10000) {
+
+		mouseTimer += arg2;
+		
+		dad.timer += arg2;
+		mom.timer += arg2;
+		girl.timer += arg2;
+		
+		if (dad.timer > 10000) {
 			dad.getRoom().leave(dad);
-			mom.getRoom().leave(mom);
-			girl.getRoom().leave(girl);
 			dad.update();
-			mom.update();
-			girl.update();
-			timer = 0;
-			/*dad.getRoom().action(dad);
-			mom.getRoom().action(mom);
-			girl.getRoom().action(girl);*/
+			dad.timer = 0;
 		}
 		
-		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-			
+		if (mom.timer > 10000) {
+			mom.getRoom().leave(mom);
+			mom.update();
+			mom.timer = 0;
+		}
+		
+		if (girl.timer > 10000) {
+			girl.getRoom().leave(girl);
+			girl.update();
+			girl.timer = 0;
+		}
+		
+		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && mouseTimer > 500){
+			mouseTimer = 0;
 			if(!cursorDownActivated){
 				arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
 				cursorDownActivated = true;

@@ -41,6 +41,10 @@ public class Room {
 		// TODO
 	}
 	
+	public void leave(Human h) {
+		
+	}
+	
 	public void draw(Graphics g){
 		g.drawImage(img, this.positionX, this.positionY);
 	}

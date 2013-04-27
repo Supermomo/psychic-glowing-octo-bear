@@ -132,6 +132,7 @@ public class Game extends BasicGameState
 		// TODO Auto-generated method stub
 		timer += arg2;
 		if (timer > 10000) {
+			dad.getRoom().leave(dad);
 			dad.update();
 			timer = 0;
 			dad.getRoom().action(dad);

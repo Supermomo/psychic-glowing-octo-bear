@@ -29,12 +29,14 @@ public class Lounge extends Room{
 		h.changePos();
 	}
 	
+	@Override
 	public void leave(Human h) {
 		nbHuman--;
 		if(nbHuman == 0) {
 			Tv television = (Tv) getObj().get(1);
 			television.setOff();
 		}
+		h.changePos();
 	}
 	
 }

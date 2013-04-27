@@ -30,5 +30,9 @@ public class Tv extends Usable{
 	public void setOff(){
 		isOn = false;
 	}
+	
+	public boolean isOn(){
+		return isOn;
+	}
 
 }

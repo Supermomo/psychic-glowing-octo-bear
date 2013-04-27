@@ -38,6 +38,7 @@ public class Game extends BasicGameState
 	String televisionOn = "rsrc/tv-on.png";
 	String imgCouch = "rsrc/couch.png";
 	String imgManStanding = "rsrc/man_standing.png";
+	String imgManSitting = "rsrc/man_sit.png";
 	String imgBed = "rsrc/bed.png";
 	String imgTable = "rsrc/table.png";
 	String imgMicro = "rsrc/microwave.png";
@@ -96,8 +97,8 @@ public class Game extends BasicGameState
 		kitchen.getObj().add(oven);
 		
 		//humans
-		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
-				lounge.getPositionY()+lounge.getHeight()/2, imgManStanding, map);
+		dad = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
+				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
 		
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
 				lounge.getPositionY()+lounge.getHeight(), imgCat);
@@ -133,6 +134,7 @@ public class Game extends BasicGameState
 		if (timer > 10000) {
 			dad.update();
 			timer = 0;
+			dad.getRoom().action(dad);
 		}
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){

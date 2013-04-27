@@ -33,7 +33,7 @@ public class Cat {
 	}
 	
 	public void action(Usable u) {
-		u.action();
+		u.action(this);
 	}
 	
 	public Room getRoom() {

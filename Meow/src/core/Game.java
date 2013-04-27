@@ -3,7 +3,9 @@ package core;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import objetcs.Couch;
 import objetcs.Object;
+import objetcs.Tv;
 import objetcs.Usable;
 
 import org.lwjgl.opengl.Drawable;
@@ -31,6 +33,9 @@ public class Game extends BasicGameState
 	String imgBed2 = "rsrc/Bedroom2.png";
 	String imgLounge = "rsrc/Lounge.png";
 	String imgKitchen = "rsrc/Kitchen.png";
+	String television = "rsrc/tv.png";
+	String televisionOn = "rsrc/tv-on.png";
+	String imgCouch = "rsrc/couch.png";
 	
 	@Override
 	public int getID() {
@@ -55,9 +60,9 @@ public class Game extends BasicGameState
 		bedroom1.getObj().add(bed1);
 		Usable bed2 = new Usable(bedroom2.getPositionX()+160, bedroom2.getPositionY()+10, 100, 150);
 		bedroom2.getObj().add(bed2);
-		Usable couch = new Usable(lounge.getPositionX()+10, lounge.getPositionY()+35, 100, 200);
+		Couch couch = new Couch(lounge.getPositionX()+10, lounge.getPositionY()+25, imgCouch);
 		lounge.getObj().add(couch);
-		Object tv = new Object(lounge.getPositionX()+415, lounge.getPositionY()+50, 25, 150);
+		Tv tv = new Tv(lounge.getPositionX()+415, lounge.getPositionY()+50, television, televisionOn);
 		lounge.getObj().add(tv);
 		Usable bowl = new Usable(kitchen.getPositionX()+10, kitchen.getPositionY()+10, 25, 25);
 		kitchen.getObj().add(bowl);

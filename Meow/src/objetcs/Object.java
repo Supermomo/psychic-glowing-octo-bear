@@ -3,6 +3,7 @@ package objetcs;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class Object {
 	
@@ -18,6 +19,13 @@ public class Object {
 		this.positionY = positionY;
 		this.width = width;
 		this.height = height;
+	}
+	
+	public Object(int positionX, int positionY, String image) throws SlickException {
+		super();
+		this.positionX = positionX;
+		this.positionY = positionY;
+		this.img = new Image(image);
 	}
 	
 	public int getPositionX() {

@@ -47,6 +47,8 @@ public class Game extends BasicGameState
 	int cursorOffsetx = 30;
 	int cursorOffsety = 30;
 	
+	
+	
 	//humans
 	private Human dad;
 	
@@ -126,7 +128,7 @@ public class Game extends BasicGameState
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			
-			arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
+			//arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
 			
 			int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
 			
@@ -160,12 +162,11 @@ public class Game extends BasicGameState
 
 				
 			}
-			
 
 		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
-			arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
+			//arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
 		}else {
-			arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
+			//arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
 		}
 		
 		

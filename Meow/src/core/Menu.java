@@ -10,19 +10,19 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Menu extends BasicGameState 
 {
-	String fondPath = "./ressources/menu.png";
+	//String fondPath = "./ressources/menu.png";
 	Image fond;
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		fond = new Image(fondPath);
+		//fond = new Image(fondPath);
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
 			throws SlickException {
-		fond.draw(0,0, 800, 600);
+		//fond.draw(0,0, 800, 600);
 	}
 
 	@Override

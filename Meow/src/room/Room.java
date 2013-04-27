@@ -2,6 +2,7 @@ package room;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import objetcs.Object;
@@ -29,6 +30,10 @@ public class Room {
 	}
 	
 	public void action() {
+	}
+	
+	public void draw(Graphics g){
+		
 	}
 
 	public ArrayList<Object> getObj() {

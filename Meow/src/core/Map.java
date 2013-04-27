@@ -8,6 +8,10 @@ public class Map {
 	
 	private ArrayList<Room> rooms;
 
+	public Map(){
+		rooms = new ArrayList<Room>();
+	}
+	
 	public ArrayList<Room> getRooms() {
 		return rooms;
 	}

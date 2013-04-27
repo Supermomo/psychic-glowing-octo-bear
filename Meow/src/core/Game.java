@@ -48,7 +48,9 @@ public class Game extends BasicGameState
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		for(Room r : map.getRooms())
-			g.fillRect(r.getPositionX(), r.getPositionY(), r.getWidth(), r.getHeight());
+		{
+			r.draw(g);
+		}
 	}
 
 	@Override

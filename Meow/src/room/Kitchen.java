@@ -1,5 +1,8 @@
 package room;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+
 public class Kitchen extends Room{
 
 	public Kitchen(int x, int y, int w, int h) {
@@ -16,4 +19,9 @@ public class Kitchen extends Room{
 		
 	}
 
+	@Override
+	public void draw(Graphics g){
+		g.setColor(Color.blue);
+		g.fillRect(this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+	}
 }

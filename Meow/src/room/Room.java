@@ -21,6 +21,7 @@ public class Room {
 		positionY = y;
 		width = w;
 		height = h;
+		obj = new ArrayList<Object>();
 	}
 	
 	public Room(int x, int y)

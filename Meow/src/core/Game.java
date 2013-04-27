@@ -3,6 +3,9 @@ package core;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import objetcs.Object;
+import objetcs.Usable;
+
 import org.lwjgl.opengl.Drawable;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -42,6 +45,12 @@ public class Game extends BasicGameState
 		map.getRooms().add(kitchen);
 		lounge = new Lounge(0, 350, 450, 250);
 		map.getRooms().add(lounge);
+		
+		//Objects
+		Object o1 = new Object(lounge.getPositionX()+10, lounge.getPositionY()+10, 20, 20);
+		lounge.getObj().add(o1);
+		Usable u1 = new Usable(kitchen.getPositionX()+10, kitchen.getPositionY()+10, 20, 20);
+		kitchen.getObj().add(u1);
 	}
 
 	@Override
@@ -50,6 +59,9 @@ public class Game extends BasicGameState
 		for(Room r : map.getRooms())
 		{
 			r.draw(g);
+			for (Object o : r.getObj()) {
+				o.draw(g);
+			}
 		}
 	}
 

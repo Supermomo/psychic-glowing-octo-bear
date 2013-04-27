@@ -13,15 +13,11 @@ public class Room {
 	private ArrayList<Object> obj;
 	private int positionX;
 	private int positionY;
-	private int width;
-	private int height;
 	private Image img;
 	
 	public Room(int x, int y, int w, int h) {
 		positionX = x;
 		positionY = y;
-		width = w;
-		height = h;
 		obj = new ArrayList<Object>();
 	}
 	
@@ -38,6 +34,7 @@ public class Room {
 	}
 	
 	public void action() {
+		// TODO
 	}
 	
 	public void draw(Graphics g){
@@ -69,19 +66,11 @@ public class Room {
 	}
 
 	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
+		return img.getWidth();
 	}
 
 	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
+		return img.getHeight();
 	}
 
 	public Image getImg() {

@@ -3,8 +3,11 @@ package core;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import objetcs.Bowl;
 import objetcs.Couch;
+import objetcs.MicroWave;
 import objetcs.Object;
+import objetcs.Table;
 import objetcs.Tv;
 import objetcs.Usable;
 
@@ -38,9 +41,11 @@ public class Game extends BasicGameState
 	String televisionOn = "rsrc/tv-on.png";
 	String imgCouch = "rsrc/couch.png";
 	String imgManStanding = "rsrc/man_standing.png";
+	String imgManSitting = "rsrc/man_sit.png";
 	String imgBed = "rsrc/bed.png";
 	String imgTable = "rsrc/table.png";
 	String imgMicro = "rsrc/microwave.png";
+	String imgMicroOn = "rsrc/microwave-on.png";
 	String imgBowl = "rsrc/bowl.png";
 	
 	String imgCat = "rsrc/cat.png";
@@ -88,16 +93,16 @@ public class Game extends BasicGameState
 		lounge.getObj().add(couch);
 		Tv tv = new Tv(lounge.getPositionX()+415, lounge.getPositionY()+50, television, televisionOn);
 		lounge.getObj().add(tv);
-		Usable bowl = new Usable(kitchen.getPositionX()+10, kitchen.getPositionY()+10, imgBowl);
+		Bowl bowl = new Bowl(kitchen.getPositionX()+10, kitchen.getPositionY()+10, imgBowl);
 		kitchen.getObj().add(bowl);
-		Object table = new Object(kitchen.getPositionX()+60, kitchen.getPositionY()+85, imgTable);
+		Table table = new Table(kitchen.getPositionX()+60, kitchen.getPositionY()+85, imgTable);
 		kitchen.getObj().add(table);
-		Usable oven = new Usable(kitchen.getPositionX()+290, kitchen.getPositionY()+50, imgMicro);
+		MicroWave oven = new MicroWave(kitchen.getPositionX()+290, kitchen.getPositionY()+50, imgMicro, imgMicroOn);
 		kitchen.getObj().add(oven);
 		
 		//humans
-		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
-				lounge.getPositionY()+lounge.getHeight()/2, imgManStanding, map);
+		dad = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
+				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
 		
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
 				lounge.getPositionY()+lounge.getHeight(), imgCat);
@@ -131,8 +136,10 @@ public class Game extends BasicGameState
 		// TODO Auto-generated method stub
 		timer += arg2;
 		if (timer > 10000) {
+			dad.getRoom().leave(dad);
 			dad.update();
 			timer = 0;
+			dad.getRoom().action(dad);
 		}
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){

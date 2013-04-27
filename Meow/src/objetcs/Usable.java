@@ -4,6 +4,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import core.Cat;
+
 public class Usable extends Object {
 	
 	public Usable(int positionX, int positionY, int width, int height) {
@@ -14,9 +16,9 @@ public class Usable extends Object {
 		super(positionX,positionY,image);
 	}
 
-	public void action()
+	public void action(Cat cat)
 	{
-		
+		System.out.println("nothing to do here (calling action())");
 	}
 	
 	@Override

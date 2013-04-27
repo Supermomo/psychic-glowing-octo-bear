@@ -33,7 +33,7 @@ public class Cat {
 	}
 	
 	public void action(Usable u) {
-		u.action();
+		u.action(this);
 	}
 	
 	public Room getRoom() {
@@ -66,7 +66,6 @@ public class Cat {
 
 	public void draw(Graphics g){
 		g.drawImage(this.getImage(), this.getPositionX(), this.getPositionY());
-		System.out.println(positionX + " " + positionY);
 	}
 
 }

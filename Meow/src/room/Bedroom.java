@@ -4,6 +4,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import core.Human;
+
 public class Bedroom extends Room{
 
 	public Bedroom(int x, int y, int w, int h) {
@@ -19,7 +21,14 @@ public class Bedroom extends Room{
 	}
 	
 	@Override
-	public void action() {
-		
+	public void action(Human h) {
+		nbHuman++;
+		h.setPositionX(this.getPositionX()+185);
+		h.setPositionY(this.getPositionY()+20);
+	}
+	
+	@Override
+	public void leave(Human h) {
+		nbHuman--;
 	}
 }

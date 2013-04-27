@@ -4,6 +4,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import core.Human;
+
 public class Kitchen extends Room{
 
 	public Kitchen(int x, int y, int w, int h) {
@@ -20,7 +22,7 @@ public class Kitchen extends Room{
 	}
 	
 	@Override
-	public void action() {
+	public void action(Human h) {
 		
 	}
 }

@@ -6,6 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import core.Human;
+
 import objetcs.Object;
 
 public class Room {
@@ -14,6 +16,7 @@ public class Room {
 	private int positionX;
 	private int positionY;
 	private Image img;
+	int nbHuman;
 	
 	public Room(int x, int y, int w, int h) {
 		positionX = x;
@@ -26,6 +29,7 @@ public class Room {
 		positionX = x;
 		positionY = y;
 		obj = new ArrayList<Object>();
+		nbHuman = 0;
 	}
 	
 	public Room(int x, int y, String image) throws SlickException{
@@ -33,8 +37,12 @@ public class Room {
 		img = new Image(image);
 	}
 	
-	public void action() {
+	public void action(Human h) {
 		// TODO
+	}
+	
+	public void leave(Human h) {
+		
 	}
 	
 	public void draw(Graphics g){

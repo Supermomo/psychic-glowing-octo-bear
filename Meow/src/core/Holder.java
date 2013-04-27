@@ -16,7 +16,6 @@ public class Holder extends StateBasedGame
 	{
 		this.addState(new Menu());
 		this.addState(new Game());
-		this.addState(new Score());
 		this.enterState(0);
 	}
 

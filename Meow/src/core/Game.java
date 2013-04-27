@@ -3,6 +3,7 @@ package core;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import objetcs.Bed;
 import objetcs.Bowl;
 import objetcs.Couch;
 import objetcs.MicroWave;
@@ -87,9 +88,9 @@ public class Game extends BasicGameState
 		map.getRooms().add(lounge);
 		
 		//Objects
-		Usable bed1 = new Usable(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, imgBed);
+		Bed bed1 = new Bed(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, imgBed);
 		bedroom1.getObj().add(bed1);
-		Usable bed2 = new Usable(bedroom2.getPositionX()+160, bedroom2.getPositionY()+10, imgBed);
+		Bed bed2 = new Bed(bedroom2.getPositionX()+160, bedroom2.getPositionY()+10, imgBed);
 		bedroom2.getObj().add(bed2);
 		Couch couch = new Couch(lounge.getPositionX()+10, lounge.getPositionY()+25, imgCouch);
 		lounge.getObj().add(couch);

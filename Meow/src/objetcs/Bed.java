@@ -4,10 +4,10 @@ import org.newdawn.slick.SlickException;
 
 import core.Cat;
 
-public class Table extends Usable {
+public class Bed extends Usable {
 
-	public Table(int positionX, int positionY, String image)
-			throws SlickException {
+	
+	public Bed(int positionX, int positionY, String image) throws SlickException {
 		super(positionX, positionY, image);
 	}
 	
@@ -16,5 +16,4 @@ public class Table extends Usable {
 		cat.setPositionX(getPositionX()+getWidth()/2 - cat.getImage().getWidth()/2);
 		cat.setPositionY(getPositionY()+getHeight()/2 - cat.getImage().getHeight()/2);
 	}
-
 }

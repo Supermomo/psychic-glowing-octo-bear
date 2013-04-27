@@ -23,6 +23,12 @@ public class Kitchen extends Room{
 	
 	@Override
 	public void action(Human h) {
-		
+		nbHuman++;
+		h.setPositionX(this.getPositionX()+this.getWidth()/2 - (nbHuman-1)*60);
+	}
+	
+	@Override
+	public void leave(Human h){
+		nbHuman--;
 	}
 }

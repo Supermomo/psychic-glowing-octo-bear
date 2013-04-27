@@ -38,6 +38,10 @@ public class Game extends BasicGameState
 	String televisionOn = "rsrc/tv-on.png";
 	String imgCouch = "rsrc/couch.png";
 	String imgManStanding = "rsrc/man_standing.png";
+	String imgBed = "rsrc/bed.png";
+	String imgTable = "rsrc/table.png";
+	String imgMicro = "rsrc/microwave.png";
+	String imgBowl = "rsrc/bowl.png";
 	
 	String imgCat = "rsrc/cat.png";
 	
@@ -47,6 +51,9 @@ public class Game extends BasicGameState
 	int cursorOffsetx = 30;
 	int cursorOffsety = 30;
 	
+	boolean cursorDownActivated = false;
+	boolean cursorUpActivated = false;
+	boolean cursorRegularActivated = false;
 	
 	
 	//humans
@@ -73,19 +80,19 @@ public class Game extends BasicGameState
 		map.getRooms().add(lounge);
 		
 		//Objects
-		Usable bed1 = new Usable(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, 100, 150);
+		Usable bed1 = new Usable(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, imgBed);
 		bedroom1.getObj().add(bed1);
-		Usable bed2 = new Usable(bedroom2.getPositionX()+160, bedroom2.getPositionY()+10, 100, 150);
+		Usable bed2 = new Usable(bedroom2.getPositionX()+160, bedroom2.getPositionY()+10, imgBed);
 		bedroom2.getObj().add(bed2);
 		Couch couch = new Couch(lounge.getPositionX()+10, lounge.getPositionY()+25, imgCouch);
 		lounge.getObj().add(couch);
 		Tv tv = new Tv(lounge.getPositionX()+415, lounge.getPositionY()+50, television, televisionOn);
 		lounge.getObj().add(tv);
-		Usable bowl = new Usable(kitchen.getPositionX()+10, kitchen.getPositionY()+10, 25, 25);
+		Usable bowl = new Usable(kitchen.getPositionX()+10, kitchen.getPositionY()+10, imgBowl);
 		kitchen.getObj().add(bowl);
-		Object table = new Object(kitchen.getPositionX()+60, kitchen.getPositionY()+85, 200, 100);
+		Object table = new Object(kitchen.getPositionX()+60, kitchen.getPositionY()+85, imgTable);
 		kitchen.getObj().add(table);
-		Usable oven = new Usable(kitchen.getPositionX()+290, kitchen.getPositionY()+50, 50, 70);
+		Usable oven = new Usable(kitchen.getPositionX()+290, kitchen.getPositionY()+50, imgMicro);
 		kitchen.getObj().add(oven);
 		
 		//humans
@@ -99,7 +106,9 @@ public class Game extends BasicGameState
 		cursor = new Image("rsrc/paw.png");
 		cursorDown = new Image("rsrc/paw_down.png");
 		cursorHover = new Image("rsrc/paw_up.png");
+		
 		arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
+		cursorRegularActivated = true;
 	}
 
 	@Override
@@ -128,8 +137,12 @@ public class Game extends BasicGameState
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			
-			//arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
-			
+			if(!cursorDownActivated){
+				arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
+				cursorDownActivated = true;
+				cursorRegularActivated = false;
+				cursorUpActivated = false;
+			}
 			int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
 			
 			if(roomIndex == -1){
@@ -164,9 +177,23 @@ public class Game extends BasicGameState
 			}
 
 		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
-			//arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
+			if(!cursorUpActivated){
+				
+				arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
+				cursorDownActivated = false;
+				cursorRegularActivated = false;
+				cursorUpActivated = true;
+			}
+			
 		}else {
-			//arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
+			if(!cursorRegularActivated){
+				
+				arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
+				cursorDownActivated = false;
+				cursorRegularActivated = true;
+				cursorUpActivated = false;
+				
+			}
 		}
 		
 		

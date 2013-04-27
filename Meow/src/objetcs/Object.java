@@ -11,7 +11,7 @@ public class Object {
 	private int positionY;
 	private int width;
 	private int height;
-	private Image img;
+	private Image img=null;
 	
 	public Object(int positionX, int positionY, int width, int height) {
 		super();
@@ -26,6 +26,7 @@ public class Object {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.img = new Image(image);
+		System.out.println("image " + image);
 		this.width = img.getWidth();
 		this.height = img.getHeight();
 	}
@@ -68,7 +69,11 @@ public class Object {
 
 	public void draw(Graphics g) {
 		g.setColor(Color.cyan);
-		g.fillRect(this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+		if(this.img == null){
+			g.fillRect(this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+		}else{
+			g.drawImage(img, this.getPositionX(), this.getPositionY());
+		}
 	}
 	
 }

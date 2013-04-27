@@ -22,6 +22,12 @@ public class Usable extends Object {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.magenta);
+		
+		if(getImg()==null){
 		g.fillRect(this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+		}
+		else{
+			g.drawImage(getImg(), this.getPositionX(), this.getPositionY());
+		}
 	}
 }

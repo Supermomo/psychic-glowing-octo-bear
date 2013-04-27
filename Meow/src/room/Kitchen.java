@@ -1,5 +1,5 @@
 package room;
 
-public class Kitchen {
+public class Kitchen extends Room{
 
 }

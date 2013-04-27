@@ -1,5 +1,5 @@
 package room;
 
-public class Lounge {
+public class Lounge extends Room{
 
 }

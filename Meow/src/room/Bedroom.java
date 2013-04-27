@@ -26,4 +26,9 @@ public class Bedroom extends Room{
 		h.setPositionX(this.getPositionX()+185);
 		h.setPositionY(this.getPositionY()+20);
 	}
+	
+	@Override
+	public void leave(Human h) {
+		nbHuman--;
+	}
 }

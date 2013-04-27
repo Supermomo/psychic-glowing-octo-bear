@@ -37,7 +37,10 @@ public class Game extends BasicGameState
 	String television = "rsrc/tv.png";
 	String televisionOn = "rsrc/tv-on.png";
 	String imgCouch = "rsrc/couch.png";
-	String imgHuman = "rsrc/"; //TODO
+	String imgManStanding = "rsrc/man_standing.png";
+	
+	String imgCat = "rsrc/cat.png";
+	
 	Image cursor; 
 	Image cursorDown;
 	Image cursorHover;
@@ -46,6 +49,8 @@ public class Game extends BasicGameState
 	
 	//humans
 	private Human dad;
+	
+	private Cat cat;
 	
 	@Override
 	public int getID() {
@@ -83,8 +88,12 @@ public class Game extends BasicGameState
 		
 		//humans
 		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
-				lounge.getPositionY()+lounge.getHeight()/2, imgHuman, map);
+				lounge.getPositionY()+lounge.getHeight()/2, imgManStanding, map);
 		
+		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
+				lounge.getPositionY()+lounge.getHeight(), imgCat);
+		
+		//cursor
 		cursor = new Image("rsrc/paw.png");
 		cursorDown = new Image("rsrc/paw_down.png");
 		cursorHover = new Image("rsrc/paw_up.png");
@@ -102,6 +111,7 @@ public class Game extends BasicGameState
 			}
 		}
 		dad.draw(g);
+		cat.draw(g);
 	}
 
 	@Override
@@ -116,6 +126,16 @@ public class Game extends BasicGameState
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
+			int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
+			int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
+					arg0.getInput().getMouseY(), 
+					map.getRooms().get(roomIndex));
+			if (roomIndex == -1 || objIndex == -1) {
+				System.out.println("Unusable object !");
+			}else {
+				cat.goTo(map.getRooms().get(roomIndex));
+				// TODO cat.action();
+			}
 		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
 			arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
 		}else {
@@ -143,6 +163,31 @@ public class Game extends BasicGameState
 			}
 		}
 		return false;
+	}
+	
+	private int getClickedRoom(int cursorX, int cursorY){
+		
+		for(Room room : this.map.getRooms()){
+			
+			if (cursorX > room.getPositionX() && cursorX < room.getPositionX() + room.getWidth()
+					&&
+					cursorY > room.getPositionY() && cursorY < room.getPositionY() + room.getHeight()){
+				
+				return map.getRooms().indexOf(room);
+			}
+		}
+		return -1;
+	}
+	
+	private int getClickedObject(int cursorX, int cursorY, Room room) {
+		for(Object obj : room.getObj()){
+			if(cursorX > room.getPositionX() + obj.getPositionX() && cursorX < room.getPositionX() + obj.getWidth()
+					&&
+					cursorY > room.getPositionY() + obj.getPositionY() && cursorY < room.getPositionY() + obj.getHeight()){
+				return room.getObj().indexOf(obj);
+			}
+		}
+		return -1;
 	}
 
 }

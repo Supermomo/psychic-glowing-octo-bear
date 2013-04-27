@@ -27,7 +27,7 @@ public class Human {
 		this.room = room;
 		this.positionX = positionX;
 		this.positionY = positionY;
-		//TODO this.image = new Image(image);
+		this.image = new Image(image);
 		this.map = map;
 	}
 
@@ -82,10 +82,8 @@ public class Human {
 	}
 
 
-	public void draw(Graphics g) {
-		g.setColor(Color.gray);
-		//TODO g.fillRect(this.getPositionX(), this.getPositionY(), image.getWidth(), image.getHeight());
-		g.fillRect(this.getPositionX(), this.getPositionY(), 50,50);
+	public void draw(Graphics g){
+		g.drawImage(this.getImage(), this.getPositionX(), this.getPositionY());
 	}
-
+	
 }

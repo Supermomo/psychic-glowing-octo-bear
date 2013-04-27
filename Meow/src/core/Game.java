@@ -125,17 +125,43 @@ public class Game extends BasicGameState
 		}
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			
 			arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
+			
 			int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
-			int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
-					arg0.getInput().getMouseY(), 
-					map.getRooms().get(roomIndex));
-			if (roomIndex == -1 || objIndex == -1) {
-				System.out.println("Unusable object !");
-			}else {
-				cat.goTo(map.getRooms().get(roomIndex));
-				// TODO cat.action();
+			
+			if(roomIndex == -1){
+				
+				System.out.println("Unusable room !");
+				
+			}else{
+				
+				Room ro = map.getRooms().get(roomIndex);
+				
+				if(roomIndex == map.getRooms().indexOf(cat.getRoom())){
+					
+					int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
+							arg0.getInput().getMouseY(), ro);
+					
+					if (objIndex == -1) {
+						System.out.println("Unusable object !");
+					}else {
+						
+						try {
+							cat.action((Usable)ro.getObj().get(objIndex));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					
+				} else {
+					cat.goTo(ro);
+				}
+
+				
 			}
+			
+
 		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
 			arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
 		}else {

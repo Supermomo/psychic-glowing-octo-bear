@@ -20,10 +20,16 @@ public class Cat {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.image = new Image(image);
+		this.positionX -= this.image.getWidth();
+		this.positionY -= this.image.getHeight();
 	}
 
 	public void goTo(Room room) {
 		this.room = room;
+		this.positionX = room.getPositionX() + room.getWidth();
+		this.positionY = room.getPositionY() + room.getHeight();
+		this.positionX -= this.image.getWidth();
+		this.positionY -= this.image.getHeight();
 	}
 	
 	public void action(Usable u) {
@@ -60,6 +66,7 @@ public class Cat {
 
 	public void draw(Graphics g){
 		g.drawImage(this.getImage(), this.getPositionX(), this.getPositionY());
+		System.out.println(positionX + " " + positionY);
 	}
 
 }

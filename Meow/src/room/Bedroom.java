@@ -2,6 +2,7 @@ package room;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 public class Bedroom extends Room{
 
@@ -13,15 +14,12 @@ public class Bedroom extends Room{
 		super(x, y);
 	}
 	
+	public Bedroom(int x, int y, String image) throws SlickException {
+		super(x, y, image);
+	}
+	
 	@Override
 	public void action() {
 		
 	}
-	
-	@Override
-	public void draw(Graphics g){
-		g.setColor(Color.green);
-		g.fillRect(this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
-	}
-
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import objetcs.Object;
 
@@ -28,13 +29,19 @@ public class Room {
 	{
 		positionX = x;
 		positionY = y;
+		obj = new ArrayList<Object>();
+	}
+	
+	public Room(int x, int y, String image) throws SlickException{
+		this(x,y);
+		img = new Image(image);
 	}
 	
 	public void action() {
 	}
 	
 	public void draw(Graphics g){
-		
+		g.drawImage(img, this.positionX, this.positionY);
 	}
 
 	public ArrayList<Object> getObj() {

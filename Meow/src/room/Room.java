@@ -38,7 +38,7 @@ public class Room {
 	}
 	
 	public void action(Human h) {
-		// TODO
+		
 	}
 	
 	public void leave(Human h) {
@@ -47,6 +47,10 @@ public class Room {
 	
 	public int getHumans(){
 		return nbHuman;
+	}
+	
+	public void setHumans(int v){
+		nbHuman = v;
 	}
 	
 	public void draw(Graphics g){

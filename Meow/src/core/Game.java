@@ -111,6 +111,7 @@ public class Game extends BasicGameState
 		girl = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
 				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
 		
+		bedroom1.setHumans(3);
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
 				lounge.getPositionY()+lounge.getHeight(), imgCat);
 		
@@ -152,9 +153,9 @@ public class Game extends BasicGameState
 			mom.update();
 			girl.update();
 			timer = 0;
-			dad.getRoom().action(dad);
+			/*dad.getRoom().action(dad);
 			mom.getRoom().action(mom);
-			girl.getRoom().action(girl);
+			girl.getRoom().action(girl);*/
 		}
 		
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
@@ -217,7 +218,6 @@ public class Game extends BasicGameState
 				
 			}
 		}
-		
 		
 	}
 	

@@ -74,6 +74,7 @@ public class Human {
 
 		positionX = room.getPositionX()+room.getWidth()/2;
 		positionY = room.getPositionY()+room.getHeight()/2;
+		this.getRoom().action(this);
 	}
 	
 	public Room getRoom() {

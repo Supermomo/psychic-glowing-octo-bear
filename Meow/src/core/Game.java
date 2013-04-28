@@ -12,6 +12,7 @@ import objetcs.Table;
 import objetcs.Tv;
 import objetcs.Usable;
 
+import org.lwjgl.input.Cursor;
 import org.lwjgl.opengl.Drawable;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;

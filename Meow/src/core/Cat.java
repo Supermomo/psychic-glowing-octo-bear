@@ -15,18 +15,22 @@ public class Cat {
 	private int positionY;
 	private Image sitCat;
 	private Image longCat;
+	private Image sleeppingCat;
+	private Image sleeppingCat2;
 	private Image displayImage;
 	private int faim;
 	private int sommeil;
 	public int timer;
 	
-	public Cat(Room room, int positionX, int positionY, String image, String image2) throws SlickException {
+	public Cat(Room room, int positionX, int positionY, String image, String image2, String image3, String image4) throws SlickException {
 		super();
 		this.room = room;
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.sitCat = new Image(image);
 		this.longCat = new Image(image2);
+		this.sleeppingCat = new Image(image3);
+		this.sleeppingCat2 = new Image(image4);
 		this.displayImage = this.sitCat;
 		this.positionX -= this.sitCat.getWidth() + 40;
 		this.positionY -= this.sitCat.getHeight() + 20;
@@ -100,10 +104,7 @@ public class Cat {
 	}
 	
 	public void setImage(Image image) {
-		if (image.equals(longCat))
-			displayImage = longCat;
-		else
-			displayImage = sitCat;
+		displayImage = image;
 	}
 
 	public Image getSitCat() {
@@ -112,6 +113,14 @@ public class Cat {
 
 	public Image getLongCat() {
 		return longCat;
+	}
+
+	public Image getSleeppingCat() {
+		return sleeppingCat;
+	}
+
+	public Image getSleeppingCat2() {
+		return sleeppingCat2;
 	}
 
 	public Usable getUsed() {

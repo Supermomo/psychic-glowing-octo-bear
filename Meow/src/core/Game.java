@@ -69,11 +69,14 @@ public class Game extends BasicGameState
 	String imgSleep = "rsrc/sleep.png";
 	String imgAnger = "rsrc/anger.png";
 	
+	String imgDanger = "rsrc/danger.png";
+	
 	Image background;
 	
 	Image sleep;
 	Image anger;
 	Image hunger;
+	Image danger;
 	
 	Image cursor; 
 	Image cursorDown;
@@ -115,6 +118,7 @@ public class Game extends BasicGameState
 		anger = new Image(imgAnger);
 		hunger = new Image(imgFaim);
 		sleep = new Image(imgSleep);
+		danger = new Image(imgDanger);
 		
 		//Objects
 		Bed bed1 = new Bed(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, imgBed);
@@ -179,14 +183,20 @@ public class Game extends BasicGameState
 		girl.draw(g);
 		cat.draw(g);
 		
+		if(cat.getHunger() < 20)
+			g.drawImage(danger, 80, 600);
 		g.setColor(Color.green);
 		g.fillRect(150, 600, 40+1.5f*cat.getHunger(), 60);
 		g.drawImage(hunger, 150, 600);
 		
+		if(cat.getSommeil() < 20)
+			g.drawImage(danger, 430, 600);
 		g.setColor(Color.blue);
 		g.fillRect(500, 600, 40+1.5f*cat.getSommeil(), 60);
 		g.drawImage(sleep, 500, 600);
 		
+		if(Human.frustration > 80)
+			g.drawImage(danger, 800, 130);
 		g.setColor(Color.red);
 		g.fillRect(800, 200, 60, 10+1.5f*Human.frustration);
 		g.drawImage(anger, 800, 200);

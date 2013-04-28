@@ -110,7 +110,10 @@ public class Game extends BasicGameState
 	public boolean catIsDead;
 	
 	Sound normalMeow;
+	public static Sound acuteMeow;
+	Sound death;
 	Music mainMusic;
+	
 	
 	@Override
 	public int getID() {
@@ -154,14 +157,17 @@ public class Game extends BasicGameState
 		kitchen.getObj().add(oven);
 		
 		//humans
-		dad = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
-				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
+		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
+				lounge.getPositionY()+lounge.getHeight()/2, imgManSitting, imgManStanding, map);
+		lounge.action(dad);
 		mom = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
 				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgMomSitting, imgMomStanding, map);
-		girl = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
-				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgGirlSitting, imgGirlStanding, map);
+		girl = new Human(bedroom2, bedroom2.getPositionX()+bedroom2.getWidth()/2, 
+				bedroom2.getPositionY()+bedroom2.getHeight()/2, imgGirlSitting, imgGirlStanding, map);
 		
-		bedroom1.setHumans(3);
+		bedroom1.setHumans(1);
+		bedroom2.setHumans(1);
+		
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
 				lounge.getPositionY()+lounge.getHeight(), imgCat, imgCatLong, sleeppingCat, sleeppingCat2);
 		
@@ -196,6 +202,8 @@ public class Game extends BasicGameState
 		background = new Image(imgBackground);
 	    
 	    normalMeow = new Sound("rsrc/normalMeow.ogg");
+	    acuteMeow = new Sound("rsrc/acute.ogg");
+	    death = new Sound("rsrc/cuteMeow.ogg");
 	}
 
 	@Override
@@ -245,6 +253,16 @@ public class Game extends BasicGameState
 		    mainMusic.loop();
 		}
 		
+		if(girl.getRoom() == cat.getRoom() && girl.getRoom().getHumans() == 1){
+			death.play();
+			end(arg1);
+		}
+		
+		if(Human.frustration >= 100) {
+			death.play();
+			end(arg1);
+		}
+		
 		mouseTimer += arg2;
 		
 		dad.timer += arg2;
@@ -269,8 +287,6 @@ public class Game extends BasicGameState
 			girl.getRoom().leave(girl);
 			girl.update();
 			girl.timer = 0;
-			if(girl.getRoom() == cat.getRoom() && girl.getRoom().getHumans() == 1)
-				end(arg1);
 		}
 		
 		if(!catIsDead){
@@ -417,6 +433,7 @@ public class Game extends BasicGameState
 			sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		else
 			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
+		mainMusic.stop();
 	}
 
 }

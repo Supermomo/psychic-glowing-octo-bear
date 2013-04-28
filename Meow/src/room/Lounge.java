@@ -32,6 +32,7 @@ public class Lounge extends Room{
 			Human.frustration += 25;
 			Game.cat.setUsed(null);
 			Game.cat.goTo(this);
+			Game.acuteMeow.play();
 		}
 	}
 	

@@ -43,6 +43,15 @@ public class Lounge extends Room{
 			television.setOff();
 		}
 		h.changePos();
+		if (!Game.dad.equals(h) && Game.dad.getRoom().equals(this)) {
+			Game.dad.setPositionY(Game.dad.getPositionY() - Game.dad.getSit().getHeight() - 5);
+		}
+		if (!Game.girl.equals(h) && Game.girl.getRoom().equals(this)) {
+			Game.girl.setPositionY(Game.girl.getPositionY() - Game.girl.getSit().getHeight() - 5);
+		}
+		if (!Game.mom.equals(h) && Game.mom.getRoom().equals(this)) {
+			Game.mom.setPositionY(Game.mom.getPositionY() - Game.mom.getSit().getHeight() - 5);
+		}
 	}
 	
 }

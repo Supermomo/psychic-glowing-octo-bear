@@ -84,9 +84,9 @@ public class Game extends BasicGameState
 	
 	
 	//humans
-	private Human dad;
-	private Human mom;
-	private Human girl;
+	public static Human dad;
+	public static Human mom;
+	public static Human girl;
 	
 	public static Cat cat;
 	

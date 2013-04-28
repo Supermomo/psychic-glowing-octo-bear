@@ -48,40 +48,42 @@ public class Human {
 	}
 	
 	public void update() {
-		Random rand = new Random();
-		boolean ok = false;
-		while(!ok)
-		{
-			int randomInt = rand.nextInt(100);
-			if (randomInt <= pbedroom1)
+		if (timer > 10000) {
+			Random rand = new Random();
+			boolean ok = false;
+			while(!ok)
 			{
-				room = map.getRooms().get(0);
-				if(room.getHumans() == 0)
-					ok = true;
+				int randomInt = rand.nextInt(100);
+				if (randomInt <= pbedroom1)
+				{
+					room = map.getRooms().get(0);
+					if(room.getHumans() == 0)
+						ok = true;
+				}
+				else if (randomInt <= pbedroom2)
+				{
+					room = map.getRooms().get(1);
+					if(room.getHumans() == 0)
+						ok = true;
+				}
+				else if (randomInt <= pkitchen)
+				{
+					room = map.getRooms().get(2);
+					if(room.getHumans() < 2)
+						ok = true;
+				}
+				else
+				{
+					room = map.getRooms().get(3);
+					if(room.getHumans() < 3)
+						ok = true;
+				}
 			}
-			else if (randomInt <= pbedroom2)
-			{
-				room = map.getRooms().get(1);
-				if(room.getHumans() == 0)
-					ok = true;
-			}
-			else if (randomInt <= pkitchen)
-			{
-				room = map.getRooms().get(2);
-				if(room.getHumans() < 2)
-					ok = true;
-			}
-			else
-			{
-				room = map.getRooms().get(3);
-				if(room.getHumans() < 3)
-					ok = true;
-			}
-		}
 
-		positionX = room.getPositionX()+room.getWidth()/2;
-		positionY = room.getPositionY()+room.getHeight()/2;
-		this.getRoom().action(this);
+			positionX = room.getPositionX()+room.getWidth()/2;
+			positionY = room.getPositionY()+room.getHeight()/2;
+			this.getRoom().action(this);
+		}
 	}
 	
 	public Room getRoom() {
@@ -108,7 +110,6 @@ public class Human {
 	public void setPositionY(int positionY) {
 		this.positionY = positionY;
 	}
-
 
 	public Image getSit() {
 		return sit;

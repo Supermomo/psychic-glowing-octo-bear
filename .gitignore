@@ -1,4 +1,5 @@
 *.class
+*.xcf
 
 # Package Files #
 Meow/.classpath

@@ -103,6 +103,8 @@ public class Game extends BasicGameState
 	
 	public static Cat cat;
 	
+	public boolean catIsDead;
+	
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
@@ -334,6 +336,7 @@ public class Game extends BasicGameState
 				cat.plusSommeil(2);
 			}
 			cat.timer = 0;
+			Human.frustration--;
 		}
 		
 		

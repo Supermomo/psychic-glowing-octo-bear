@@ -208,6 +208,7 @@ public class Game extends BasicGameState
 	    normalMeow = new Sound("rsrc/normalMeow.ogg");
 	    acuteMeow = new Sound("rsrc/acute.ogg");
 	    death = new Sound("rsrc/cuteMeow.ogg");
+	    mainMusic = new Music("rsrc/main.ogg");
 	}
 
 	@Override
@@ -251,9 +252,7 @@ public class Game extends BasicGameState
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		if(mainMusic == null){
-			//music 
-			mainMusic = new Music("rsrc/main.ogg");
+		if(!mainMusic.playing()){
 		    mainMusic.loop();
 		}
 		

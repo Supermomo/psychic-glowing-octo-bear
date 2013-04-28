@@ -20,6 +20,7 @@ public class Generique extends BasicGameState{
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		fond = new Image("rsrc/credits.png");
+		sound = new Music("rsrc/generique.ogg");
 	}
 
 	@Override
@@ -31,8 +32,7 @@ public class Generique extends BasicGameState{
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
-		if(sound == null){
-			sound = new Music("rsrc/generique.ogg");
+		if(!sound.playing()){
 			sound.loop();
 		}
 		

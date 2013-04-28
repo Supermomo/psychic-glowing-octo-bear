@@ -20,6 +20,7 @@ public class Victory extends BasicGameState{
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		fond = new Image("rsrc/ironcat.png");
+		sound = new Music("rsrc/victory.ogg");
 	}
 
 	@Override
@@ -32,8 +33,7 @@ public class Victory extends BasicGameState{
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		
-		if(sound == null){
-			sound = new Music("rsrc/victory.ogg");
+		if(!sound.playing()){
 			sound.loop();
 		}
 		

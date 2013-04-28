@@ -20,6 +20,7 @@ public class KilledByOven extends BasicGameState{
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		fond = new Image("rsrc/micro_kill.png");
+		sound = new Music("rsrc/girlDeath.ogg");
 	}
 
 	@Override
@@ -31,8 +32,7 @@ public class KilledByOven extends BasicGameState{
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
-		if(sound == null){
-			sound = new Music("rsrc/girlDeath.ogg");
+		if(!sound.playing()){
 			sound.loop();
 		}
 		

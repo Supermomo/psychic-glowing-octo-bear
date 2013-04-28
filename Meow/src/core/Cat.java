@@ -60,6 +60,13 @@ public class Cat {
 			faim += 25;
 	}
 	
+	public void plusFaim(int i) {
+		if (faim + i > 100) {
+			faim = 100;
+		} else 
+			faim += i;
+	}
+	
 	public void minusSommeil(){
 		if(sommeil > 0)
 			sommeil--;

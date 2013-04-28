@@ -254,6 +254,7 @@ public class Game extends BasicGameState
 		}
 		
 		if(girl.getRoom() == cat.getRoom() && girl.getRoom().getHumans() == 1){
+			catIsDead = true;
 			death.play();
 			end(arg1);
 		}
@@ -381,6 +382,13 @@ public class Game extends BasicGameState
 				if(cat.getHunger() == 0)
 					catIsDead = true;
 			}
+			
+			if(arg0.getInput().isKeyDown(Input.KEY_C) && arg0.getInput().isKeyDown(Input.KEY_A) 
+					&& arg0.getInput().isKeyDown(Input.KEY_T)){
+				cat.plusFaim(100);
+				cat.plusSommeil(100);
+				
+			}
 		}
 	}
 	
@@ -433,7 +441,7 @@ public class Game extends BasicGameState
 	}
 	
 	private void end(StateBasedGame sbg){
-		if(Human.frustration < 100)
+		if(Human.frustration < 100 && catIsDead)
 			sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		else if (cat.getHunger() > 90 && cat.getSommeil() > 90)
 			sbg.enterState(5, new FadeOutTransition(), new FadeInTransition());

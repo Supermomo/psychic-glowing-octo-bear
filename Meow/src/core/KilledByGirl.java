@@ -26,16 +26,22 @@ public class KilledByGirl extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
 			throws SlickException {
 		fond.draw(0, 0, 860, 660);
-		
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
+		
+		if(sound == null){
+			sound = new Music("rsrc/girlDeath.ogg");
+			sound.loop();
+		}
+		
 		Input input = arg0.getInput();
 		if(input.isKeyPressed(Input.KEY_ENTER))
         {
         	arg1.enterState(4, new FadeOutTransition(), new FadeInTransition());
+        	sound.stop();
         }
 	}
 

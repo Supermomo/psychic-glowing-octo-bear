@@ -31,6 +31,10 @@ public class KilledByOven extends BasicGameState{
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
+		if(sound == null){
+			sound = new Music("rsrc/deathOven.ogg");
+		}
+		
 		Input input = arg0.getInput();
 		if(input.isKeyPressed(Input.KEY_ENTER))
         {

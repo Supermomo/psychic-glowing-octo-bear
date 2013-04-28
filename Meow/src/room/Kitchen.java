@@ -1,5 +1,7 @@
 package room;
 
+import objetcs.Bowl;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -24,7 +26,10 @@ public class Kitchen extends Room{
 	@Override
 	public void action(Human h) {
 		nbHuman++;
+		Bowl b = (Bowl) getObj().get(0);
 		h.setPositionX(this.getPositionX()+this.getWidth()/2 - (nbHuman-1)*60);
+		if(timer > 60000)
+			b.plein = true;
 	}
 	
 	@Override

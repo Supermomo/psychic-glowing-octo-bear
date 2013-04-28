@@ -22,6 +22,7 @@ public class Bowl extends Usable {
 		cat.setImage(cat.getLongCat());
 		cat.setPositionX(getPositionX() + getWidth());
 		cat.setPositionY(getPositionY());
+		cat.plusFaim();
 	}
 	
 	public boolean isPlein(){

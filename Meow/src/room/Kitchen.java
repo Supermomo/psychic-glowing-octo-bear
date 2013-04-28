@@ -28,8 +28,10 @@ public class Kitchen extends Room{
 		nbHuman++;
 		Bowl b = (Bowl) getObj().get(0);
 		h.setPositionX(this.getPositionX()+this.getWidth()/2 - (nbHuman-1)*60);
-		if(timer > 60000)
+		if(timer > 60000){
 			b.plein = true;
+			timer = 0;
+		}
 	}
 	
 	@Override

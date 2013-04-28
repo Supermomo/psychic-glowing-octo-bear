@@ -123,6 +123,10 @@ public class Game extends BasicGameState
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+		myInit(arg0, arg1);
+	}
+	
+	public void myInit(GameContainer arg0, StateBasedGame arg1) throws SlickException{
 		map = new Map();
 		bedroom1 = new Bedroom(0, 0, imgBed1);
 		map.getRooms().add(bedroom1);
@@ -453,7 +457,7 @@ public class Game extends BasicGameState
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		init(container, game);
+		myInit(container, game);
 		super.enter(container, game);
 		
 	}

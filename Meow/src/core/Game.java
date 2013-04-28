@@ -251,7 +251,8 @@ public class Game extends BasicGameState
 					}else {
 						
 						try {
-							if (!(cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)) {
+							if (!((cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)
+									|| (cat.getRoom() instanceof Bedroom && cat.getRoom().getHumans() > 0))) {
 								cat.action((Usable)ro.getObj().get(objIndex));
 							}
 						} catch (Exception e) {

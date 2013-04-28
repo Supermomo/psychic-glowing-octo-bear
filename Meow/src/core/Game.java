@@ -177,15 +177,15 @@ public class Game extends BasicGameState
 		cat.draw(g);
 		
 		g.setColor(Color.green);
-		g.fillRect(150, 600, 40+2*cat.getHunger(), 60);
+		g.fillRect(150, 600, 40+1.5f*cat.getHunger(), 60);
 		g.drawImage(hunger, 150, 600);
 		
 		g.setColor(Color.blue);
-		g.fillRect(500, 600, 40+2*cat.getSommeil(), 60);
+		g.fillRect(500, 600, 40+1.5f*cat.getSommeil(), 60);
 		g.drawImage(sleep, 500, 600);
 		
 		g.setColor(Color.red);
-		g.fillRect(800, 200, 60, 10+2*Human.frustration);
+		g.fillRect(800, 200, 60, 10+1.5f*Human.frustration);
 		g.drawImage(anger, 800, 200);
 	}
 

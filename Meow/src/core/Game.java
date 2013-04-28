@@ -110,7 +110,10 @@ public class Game extends BasicGameState
 	public boolean catIsDead;
 	
 	Sound normalMeow;
+	public static Sound acuteMeow;
+	Sound death;
 	Music mainMusic;
+	
 	
 	@Override
 	public int getID() {
@@ -196,6 +199,8 @@ public class Game extends BasicGameState
 		background = new Image(imgBackground);
 	    
 	    normalMeow = new Sound("rsrc/normalMeow.ogg");
+	    acuteMeow = new Sound("rsrc/acute.ogg");
+	    death = new Sound("rsrc/cuteMeow.ogg");
 	}
 
 	@Override
@@ -245,6 +250,16 @@ public class Game extends BasicGameState
 		    mainMusic.loop();
 		}
 		
+		if(girl.getRoom() == cat.getRoom() && girl.getRoom().getHumans() == 1){
+			death.play();
+			end(arg1);
+		}
+		
+		if(Human.frustration >= 100) {
+			death.play();
+			end(arg1);
+		}
+		
 		mouseTimer += arg2;
 		
 		dad.timer += arg2;
@@ -269,8 +284,6 @@ public class Game extends BasicGameState
 			girl.getRoom().leave(girl);
 			girl.update();
 			girl.timer = 0;
-			if(girl.getRoom() == cat.getRoom() && girl.getRoom().getHumans() == 1)
-				end(arg1);
 		}
 		
 		if(!catIsDead){
@@ -417,6 +430,7 @@ public class Game extends BasicGameState
 			sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		else
 			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
+		mainMusic.stop();
 	}
 
 }

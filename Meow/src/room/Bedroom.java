@@ -30,6 +30,8 @@ public class Bedroom extends Room{
 			Human.frustration += 25;
 			Game.cat.setUsed(null);
 			Game.cat.goTo(this);
+			if(Game.girl != h)
+				Game.acuteMeow.play();
 		}
 	}
 	

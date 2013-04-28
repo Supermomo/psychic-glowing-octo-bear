@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import core.Game;
 import core.Human;
 
 public class Lounge extends Room{
@@ -27,6 +28,11 @@ public class Lounge extends Room{
 		h.setPositionX(this.getPositionX()+30);
 		h.setPositionY(this.getPositionY()+45+55*(nbHuman-1));
 		h.changePos();
+		if (nbHuman > 1 && Game.cat.getRoom().equals(this) && getObj().get(0).equals(Game.cat.getUsed())) {
+			Human.frustration += 25;
+			Game.cat.setUsed(null);
+			Game.cat.goTo(this);
+		}
 	}
 	
 	@Override

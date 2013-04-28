@@ -33,6 +33,7 @@ public class MicroWave extends Usable {
 	
 	@Override
 	public void action(Cat cat) {
+		cat.setUsed(this);
 		cat.setPositionX(getPositionX() - cat.getImage().getWidth());
 		cat.setPositionY(getPositionY() - cat.getImage().getHeight()/2);
 	}

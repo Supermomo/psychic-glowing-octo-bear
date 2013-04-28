@@ -4,6 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import core.Game;
 import core.Human;
 
 public class Bedroom extends Room{
@@ -25,6 +26,11 @@ public class Bedroom extends Room{
 		nbHuman++;
 		h.setPositionX(this.getPositionX()+185);
 		h.setPositionY(this.getPositionY()+20);
+		if (Game.cat.getRoom().equals(this) && getObj().get(0).equals(Game.cat.getUsed())) {
+			Human.frustration += 25;
+			Game.cat.setUsed(null);
+			Game.cat.goTo(this);
+		}
 	}
 	
 	@Override

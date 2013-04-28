@@ -16,6 +16,9 @@ public class Human {
 	static final int pkitchen = 60;
 	static final int plounge = 100;
 	
+	static final int MAXFRUSTRATION = 100;
+	public static int frustration;
+	
 	private Room room;
 	private int positionX;
 	private int positionY;
@@ -37,6 +40,7 @@ public class Human {
 		this.map = map;
 		isDebout = true;
 		timer = 0;
+		frustration = 0;
 	}
 
 	public void action() {

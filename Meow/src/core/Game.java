@@ -79,7 +79,7 @@ public class Game extends BasicGameState
 	private Human mom;
 	private Human girl;
 	
-	private Cat cat;
+	public static Cat cat;
 	
 	@Override
 	public int getID() {
@@ -222,7 +222,9 @@ public class Game extends BasicGameState
 					}else {
 						
 						try {
-							cat.action((Usable)ro.getObj().get(objIndex));
+							if (!(cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)) {
+								cat.action((Usable)ro.getObj().get(objIndex));
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -260,7 +262,14 @@ public class Game extends BasicGameState
 		{
 			cat.minusFaim();
 			cat.minusSommeil();
+			if (cat.getUsed() instanceof Bed) {
+				cat.plusSommeil(3);
+			}
+			if (cat.getUsed() instanceof Couch) {
+				cat.plusSommeil(2);
+			}
 		}
+		
 		
 	}
 	

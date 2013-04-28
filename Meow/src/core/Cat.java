@@ -10,6 +10,7 @@ import room.Room;
 public class Cat {
 	
 	private Room room;
+	private Usable used;
 	private int positionX;
 	private int positionY;
 	private Image sitCat;
@@ -36,6 +37,7 @@ public class Cat {
 	public void goTo(Room room) {
 		displayImage = sitCat;
 		this.room = room;
+		this.used = null;
 		this.positionX = room.getPositionX() + room.getWidth();
 		this.positionY = room.getPositionY() + room.getHeight();
 		this.positionX -= this.displayImage.getWidth();
@@ -47,9 +49,21 @@ public class Cat {
 			faim--;
 	}
 	
+	public void plusFaim() {
+		if (faim > 75) {
+			faim = 100;
+		} else 
+			faim += 25;
+	}
+	
 	public void minusSommeil(){
 		if(sommeil > 0)
 			sommeil--;
+	}
+	
+	public void plusSommeil(int i) {
+		if (sommeil < 100)
+			sommeil+= i;
 	}
 	
 	public void action(Usable u) {
@@ -98,6 +112,14 @@ public class Cat {
 
 	public Image getLongCat() {
 		return longCat;
+	}
+
+	public Usable getUsed() {
+		return used;
+	}
+
+	public void setUsed(Usable used) {
+		this.used = used;
 	}
 
 	public void draw(Graphics g){

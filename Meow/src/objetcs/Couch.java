@@ -4,6 +4,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import room.Lounge;
+
+import core.Cat;
+
 public class Couch extends Usable{
 
 	Image img2;
@@ -18,7 +22,10 @@ public class Couch extends Usable{
 		g.drawImage(this.getImg(), this.getPositionX(), this.getPositionY());
 	}
 	
-	public void sit() {
-		//TODO
+	@Override
+	public void action (Cat cat) {
+		cat.setUsed(this);		
+		cat.setPositionX(getPositionX()+getWidth()/2 - cat.getImage().getWidth()/2);
+		cat.setPositionY(getPositionY()+getHeight()/2 - cat.getImage().getHeight()/2);
 	}
 }

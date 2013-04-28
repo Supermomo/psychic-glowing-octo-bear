@@ -24,6 +24,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.opengl.CursorLoader;
 import org.newdawn.slick.state.BasicGameState;
@@ -102,6 +103,8 @@ public class Game extends BasicGameState
 	public static Human girl;
 	
 	public static Cat cat;
+	
+	Sound normalMeow;
 	
 	@Override
 	public int getID() {
@@ -188,6 +191,8 @@ public class Game extends BasicGameState
 		//music 
 		Music mainMusic = new Music("rsrc/main.ogg");
 	    mainMusic.loop();
+	    
+	    normalMeow = new Sound("rsrc/normalMeow.ogg");
 	}
 
 	@Override
@@ -289,6 +294,10 @@ public class Game extends BasicGameState
 							if (!((cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)
 									|| (cat.getRoom() instanceof Bedroom && cat.getRoom().getHumans() > 0))) {
 								cat.action((Usable)ro.getObj().get(objIndex));
+								if(normalMeow.playing()){
+									normalMeow.stop();
+								}
+								normalMeow.play();
 							}
 						} catch (Exception e) {
 							e.printStackTrace();

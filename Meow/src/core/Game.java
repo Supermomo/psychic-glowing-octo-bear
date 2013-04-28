@@ -1,5 +1,6 @@
 package core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -12,6 +13,7 @@ import objetcs.Table;
 import objetcs.Tv;
 import objetcs.Usable;
 
+import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Cursor;
 import org.lwjgl.opengl.Drawable;
 import org.newdawn.slick.BasicGame;
@@ -23,6 +25,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.opengl.CursorLoader;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -86,6 +89,9 @@ public class Game extends BasicGameState
 	boolean cursorUpActivated = false;
 	boolean cursorRegularActivated = false;
 	
+	Cursor Cregular;
+	Cursor CUp;
+	Cursor CDown;
 	
 	//humans
 	public static Human dad;
@@ -146,11 +152,25 @@ public class Game extends BasicGameState
 				lounge.getPositionY()+lounge.getHeight(), imgCat, imgCatLong, sleeppingCat, sleeppingCat2);
 		
 		//cursor
-		cursor = new Image("rsrc/paw.png");
+		/*cursor = new Image("rsrc/paw.png");
 		cursorDown = new Image("rsrc/paw_down.png");
-		cursorHover = new Image("rsrc/paw_up.png");
+		cursorHover = new Image("rsrc/paw_up.png");*/
 		
-		arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
+		try {
+			
+			Cregular = CursorLoader.get().getCursor("rsrc/paw.png", cursorOffsetx, cursorOffsety);
+			CUp = CursorLoader.get().getCursor("rsrc/paw_up.png", cursorOffsetx, cursorOffsety);
+			CDown = CursorLoader.get().getCursor("rsrc/paw_down.png", cursorOffsetx, cursorOffsety);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		arg0.setMouseCursor(Cregular, cursorOffsetx, cursorOffsety);
 		cursorRegularActivated = true;
 		
 		dad.timer = 7000;
@@ -227,7 +247,7 @@ public class Game extends BasicGameState
 		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && mouseTimer > 500){
 			mouseTimer = 0;
 			if(!cursorDownActivated){
-				arg0.setMouseCursor(cursorDown, cursorOffsetx, cursorOffsety);
+				arg0.setMouseCursor(CDown, cursorOffsetx, cursorOffsety);
 				cursorDownActivated = true;
 				cursorRegularActivated = false;
 				cursorUpActivated = false;
@@ -271,7 +291,7 @@ public class Game extends BasicGameState
 		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
 			if(!cursorUpActivated){
 				
-				arg0.setMouseCursor(cursorHover, cursorOffsetx, cursorOffsety);
+				arg0.setMouseCursor(CUp, cursorOffsetx, cursorOffsety);
 				cursorDownActivated = false;
 				cursorRegularActivated = false;
 				cursorUpActivated = true;
@@ -280,7 +300,7 @@ public class Game extends BasicGameState
 		}else {
 			if(!cursorRegularActivated){
 				
-				arg0.setMouseCursor(cursor, cursorOffsetx, cursorOffsety);
+				arg0.setMouseCursor(Cregular, cursorOffsetx, cursorOffsety);
 				cursorDownActivated = false;
 				cursorRegularActivated = true;
 				cursorUpActivated = false;

@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import core.Game;
 import core.Human;
 
 public class Kitchen extends Room{
@@ -37,5 +38,14 @@ public class Kitchen extends Room{
 	@Override
 	public void leave(Human h){
 		nbHuman--;
+		if (!Game.dad.equals(h) && Game.dad.getRoom().equals(this)) {
+			Game.dad.setPositionX(Game.dad.getPositionX() + Game.dad.getDebout().getWidth());
+		}
+		if (!Game.girl.equals(h) && Game.girl.getRoom().equals(this)) {
+			Game.girl.setPositionX(Game.girl.getPositionX() + Game.girl.getDebout().getWidth());
+		}
+		if (!Game.mom.equals(h) && Game.mom.getRoom().equals(this)) {
+			Game.mom.setPositionX(Game.mom.getPositionX() + Game.mom.getDebout().getWidth());
+		}
 	}
 }

@@ -164,6 +164,10 @@ public class Game extends BasicGameState
 		mouseTimer = 0;
 		
 		background = new Image(imgBackground);
+		
+		//music 
+		Music mainMusic = new Music("rsrc/main.ogg");
+	    mainMusic.loop();
 	}
 
 	@Override

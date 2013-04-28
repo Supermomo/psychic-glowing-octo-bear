@@ -52,6 +52,7 @@ public class Game extends BasicGameState
 	String imgBowl = "rsrc/bowl.png";
 	
 	String imgCat = "rsrc/cat.png";
+	String imgCatLong = "rsrc/cat_long.png";
 	String imgBackground = "rsrc/background.png";
 	
 	Image background;
@@ -118,7 +119,7 @@ public class Game extends BasicGameState
 		
 		bedroom1.setHumans(3);
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
-				lounge.getPositionY()+lounge.getHeight(), imgCat);
+				lounge.getPositionY()+lounge.getHeight(), imgCat, imgCatLong);
 		
 		//cursor
 		cursor = new Image("rsrc/paw.png");

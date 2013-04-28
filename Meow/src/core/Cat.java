@@ -12,27 +12,33 @@ public class Cat {
 	private Room room;
 	private int positionX;
 	private int positionY;
-	private Image image;
+	private Image sitCat;
+	private Image longCat;
+	private Image displayImage;
 	
-	public Cat(Room room, int positionX, int positionY, String image) throws SlickException {
+	public Cat(Room room, int positionX, int positionY, String image, String image2) throws SlickException {
 		super();
 		this.room = room;
 		this.positionX = positionX;
 		this.positionY = positionY;
-		this.image = new Image(image);
-		this.positionX -= this.image.getWidth();
-		this.positionY -= this.image.getHeight();
+		this.sitCat = new Image(image);
+		this.longCat = new Image(image2);
+		this.displayImage = this.sitCat;
+		this.positionX -= this.sitCat.getWidth();
+		this.positionY -= this.sitCat.getHeight();
 	}
 
 	public void goTo(Room room) {
+		displayImage = sitCat;
 		this.room = room;
 		this.positionX = room.getPositionX() + room.getWidth();
 		this.positionY = room.getPositionY() + room.getHeight();
-		this.positionX -= this.image.getWidth();
-		this.positionY -= this.image.getHeight();
+		this.positionX -= this.displayImage.getWidth();
+		this.positionY -= this.displayImage.getHeight();
 	}
 	
 	public void action(Usable u) {
+		displayImage = sitCat;
 		u.action(this);
 	}
 	
@@ -61,7 +67,22 @@ public class Cat {
 	}
 
 	public Image getImage() {
-		return image;
+		return displayImage;
+	}
+	
+	public void setImage(Image image) {
+		if (image.equals(longCat))
+			displayImage = longCat;
+		else
+			displayImage = sitCat;
+	}
+
+	public Image getSitCat() {
+		return sitCat;
+	}
+
+	public Image getLongCat() {
+		return longCat;
 	}
 
 	public void draw(Graphics g){

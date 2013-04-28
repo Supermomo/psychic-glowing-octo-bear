@@ -14,8 +14,9 @@ public class Bowl extends Usable {
 	
 	@Override
 	public void action(Cat cat) {
+		cat.setImage(cat.getLongCat());
 		cat.setPositionX(getPositionX() + getWidth());
-		cat.setPositionY(getPositionY() - cat.getImage().getHeight()/2);
+		cat.setPositionY(getPositionY());
 	}
 	
 }

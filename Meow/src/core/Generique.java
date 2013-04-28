@@ -19,7 +19,7 @@ public class Generique extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		fond = new Image("rsrc/credit.png");
+		fond = new Image("rsrc/credits.png");
 	}
 
 	@Override

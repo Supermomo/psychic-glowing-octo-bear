@@ -15,6 +15,9 @@ public class Cat {
 	private Image sitCat;
 	private Image longCat;
 	private Image displayImage;
+	private int faim;
+	private int sommeil;
+	public int timer;
 	
 	public Cat(Room room, int positionX, int positionY, String image, String image2) throws SlickException {
 		super();
@@ -26,6 +29,8 @@ public class Cat {
 		this.displayImage = this.sitCat;
 		this.positionX -= this.sitCat.getWidth();
 		this.positionY -= this.sitCat.getHeight();
+		sommeil = 50;
+		faim = 50;
 	}
 
 	public void goTo(Room room) {
@@ -35,6 +40,16 @@ public class Cat {
 		this.positionY = room.getPositionY() + room.getHeight();
 		this.positionX -= this.displayImage.getWidth();
 		this.positionY -= this.displayImage.getHeight();
+	}
+	
+	public void minusFaim(){
+		if(faim > 0)
+			faim--;
+	}
+	
+	public void minusSommeil(){
+		if(sommeil > 0)
+			sommeil--;
 	}
 	
 	public void action(Usable u) {

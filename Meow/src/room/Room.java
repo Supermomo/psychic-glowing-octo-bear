@@ -17,6 +17,7 @@ public class Room {
 	private int positionY;
 	private Image img;
 	int nbHuman;
+	public int timer;
 	
 	public Room(int x, int y, int w, int h) {
 		positionX = x;
@@ -30,6 +31,7 @@ public class Room {
 		positionY = y;
 		obj = new ArrayList<Object>();
 		nbHuman = 0;
+		timer = 0;
 	}
 	
 	public Room(int x, int y, String image) throws SlickException{

@@ -45,15 +45,21 @@ public class Game extends BasicGameState
 	String imgCouch = "rsrc/couch.png";
 	String imgManStanding = "rsrc/man_standing.png";
 	String imgManSitting = "rsrc/man_sit.png";
+	String imgMomSitting = "rsrc/mom_sit.png";
+	String imgMomStanding = "rsrc/mom.png";
+	String imgGirlSitting = "rsrc/girl_sit.png";
+	String imgGirlStanding = "rsrc/girl.png";
 	String imgBed = "rsrc/bed.png";
 	String imgTable = "rsrc/table.png";
 	String imgMicro = "rsrc/microwave.png";
 	String imgMicroOn = "rsrc/microwave-on.png";
 	String imgBowl = "rsrc/bowl.png";
+	String imgBowlEmpty = "rsrc/bowl_empty.png";
 	
 	String imgCat = "rsrc/cat.png";
 	String imgCatLong = "rsrc/cat_long.png";
 	String imgBackground = "rsrc/background.png";
+	
 	
 	Image background;
 	
@@ -102,7 +108,7 @@ public class Game extends BasicGameState
 		lounge.getObj().add(couch);
 		Tv tv = new Tv(lounge.getPositionX()+415, lounge.getPositionY()+50, television, televisionOn);
 		lounge.getObj().add(tv);
-		Bowl bowl = new Bowl(kitchen.getPositionX()+10, kitchen.getPositionY()+10, imgBowl);
+		Bowl bowl = new Bowl(kitchen.getPositionX()+10, kitchen.getPositionY()+10, imgBowlEmpty, imgBowl);
 		kitchen.getObj().add(bowl);
 		Table table = new Table(kitchen.getPositionX()+60, kitchen.getPositionY()+85, imgTable);
 		kitchen.getObj().add(table);
@@ -113,9 +119,9 @@ public class Game extends BasicGameState
 		dad = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
 				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
 		mom = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
-				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
+				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgMomSitting, imgMomStanding, map);
 		girl = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
-				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
+				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgGirlSitting, imgGirlStanding, map);
 		
 		bedroom1.setHumans(3);
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
@@ -167,6 +173,8 @@ public class Game extends BasicGameState
 		dad.timer += arg2;
 		mom.timer += arg2;
 		girl.timer += arg2;
+		cat.timer += arg2;
+		kitchen.timer += arg2;
 		
 		if (dad.timer > 10000) {
 			dad.getRoom().leave(dad);
@@ -245,6 +253,13 @@ public class Game extends BasicGameState
 				cursorUpActivated = false;
 				
 			}
+		}
+		
+		// Gestion du cat
+		if(cat.timer > 2000)
+		{
+			cat.minusFaim();
+			cat.minusSommeil();
 		}
 		
 	}

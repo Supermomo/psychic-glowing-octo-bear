@@ -157,14 +157,17 @@ public class Game extends BasicGameState
 		kitchen.getObj().add(oven);
 		
 		//humans
-		dad = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
-				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgManSitting, imgManStanding, map);
+		dad = new Human(lounge, lounge.getPositionX()+lounge.getWidth()/2, 
+				lounge.getPositionY()+lounge.getHeight()/2, imgManSitting, imgManStanding, map);
+		lounge.action(dad);
 		mom = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
 				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgMomSitting, imgMomStanding, map);
-		girl = new Human(bedroom1, bedroom1.getPositionX()+bedroom1.getWidth()/2, 
-				bedroom1.getPositionY()+bedroom1.getHeight()/2, imgGirlSitting, imgGirlStanding, map);
+		girl = new Human(bedroom2, bedroom2.getPositionX()+bedroom2.getWidth()/2, 
+				bedroom2.getPositionY()+bedroom2.getHeight()/2, imgGirlSitting, imgGirlStanding, map);
 		
-		bedroom1.setHumans(3);
+		bedroom1.setHumans(1);
+		bedroom2.setHumans(1);
+		
 		cat = new Cat(lounge, lounge.getPositionX()+lounge.getWidth(), 
 				lounge.getPositionY()+lounge.getHeight(), imgCat, imgCatLong, sleeppingCat, sleeppingCat2);
 		

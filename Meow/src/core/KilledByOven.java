@@ -34,7 +34,7 @@ public class KilledByOven extends BasicGameState{
 		Input input = arg0.getInput();
 		if(input.isKeyPressed(Input.KEY_ENTER))
         {
-        	arg1.enterState(1, new FadeOutTransition(), new FadeInTransition());
+        	arg1.enterState(4, new FadeOutTransition(), new FadeInTransition());
         }
 	}
 

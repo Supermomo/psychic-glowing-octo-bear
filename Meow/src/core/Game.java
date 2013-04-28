@@ -260,83 +260,85 @@ public class Game extends BasicGameState
 			girl.timer = 0;
 		}
 		
-		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && mouseTimer > 500){
-			mouseTimer = 0;
-			if(!cursorDownActivated){
-				arg0.setMouseCursor(CDown, cursorOffsetx, cursorOffsety);
-				cursorDownActivated = true;
-				cursorRegularActivated = false;
-				cursorUpActivated = false;
-			}
-			int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
-			
-			if(roomIndex == -1){
-				
-				System.out.println("Unusable room !");
-				
-			}else{
-				
-				Room ro = map.getRooms().get(roomIndex);
-				
-				if(roomIndex == map.getRooms().indexOf(cat.getRoom())){
-					
-					int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
-							arg0.getInput().getMouseY(), ro);
-					
-					if (objIndex == -1) {
-						System.out.println("Unusable object !");
-					}else {
-						
-						try {
-							if (!((cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)
-									|| (cat.getRoom() instanceof Bedroom && cat.getRoom().getHumans() > 0))) {
-								cat.action((Usable)ro.getObj().get(objIndex));
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					
-				} else {
-					cat.goTo(ro);
+		if(catIsDead){
+			if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && mouseTimer > 500){
+				mouseTimer = 0;
+				if(!cursorDownActivated){
+					arg0.setMouseCursor(CDown, cursorOffsetx, cursorOffsety);
+					cursorDownActivated = true;
+					cursorRegularActivated = false;
+					cursorUpActivated = false;
 				}
-
+				int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
 				
-			}
-
-		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
-			if(!cursorUpActivated){
+				if(roomIndex == -1){
+					
+					System.out.println("Unusable room !");
+					
+				}else{
+					
+					Room ro = map.getRooms().get(roomIndex);
+					
+					if(roomIndex == map.getRooms().indexOf(cat.getRoom())){
+						
+						int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
+								arg0.getInput().getMouseY(), ro);
+						
+						if (objIndex == -1) {
+							System.out.println("Unusable object !");
+						}else {
+							
+							try {
+								if (!((cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)
+										|| (cat.getRoom() instanceof Bedroom && cat.getRoom().getHumans() > 0))) {
+									cat.action((Usable)ro.getObj().get(objIndex));
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+						
+					} else {
+						cat.goTo(ro);
+					}
+	
+					
+				}
+	
+			}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
+				if(!cursorUpActivated){
+					
+					arg0.setMouseCursor(CUp, cursorOffsetx, cursorOffsety);
+					cursorDownActivated = false;
+					cursorRegularActivated = false;
+					cursorUpActivated = true;
+				}
 				
-				arg0.setMouseCursor(CUp, cursorOffsetx, cursorOffsety);
-				cursorDownActivated = false;
-				cursorRegularActivated = false;
-				cursorUpActivated = true;
+			}else {
+				if(!cursorRegularActivated){
+					
+					arg0.setMouseCursor(Cregular, cursorOffsetx, cursorOffsety);
+					cursorDownActivated = false;
+					cursorRegularActivated = true;
+					cursorUpActivated = false;
+					
+				}
 			}
 			
-		}else {
-			if(!cursorRegularActivated){
-				
-				arg0.setMouseCursor(Cregular, cursorOffsetx, cursorOffsety);
-				cursorDownActivated = false;
-				cursorRegularActivated = true;
-				cursorUpActivated = false;
-				
+			// Gestion du cat
+			if(cat.timer > 2000)
+			{
+				cat.minusFaim();
+				cat.minusSommeil();
+				if (cat.getUsed() instanceof Bed) {
+					cat.plusSommeil(3);
+				}
+				if (cat.getUsed() instanceof Couch) {
+					cat.plusSommeil(2);
+				}
+				cat.timer = 0;
+				Human.frustration--;
 			}
-		}
-		
-		// Gestion du cat
-		if(cat.timer > 2000)
-		{
-			cat.minusFaim();
-			cat.minusSommeil();
-			if (cat.getUsed() instanceof Bed) {
-				cat.plusSommeil(3);
-			}
-			if (cat.getUsed() instanceof Couch) {
-				cat.plusSommeil(2);
-			}
-			cat.timer = 0;
-			Human.frustration--;
 		}
 		
 		

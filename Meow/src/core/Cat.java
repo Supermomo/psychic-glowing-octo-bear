@@ -28,8 +28,8 @@ public class Cat {
 		this.sitCat = new Image(image);
 		this.longCat = new Image(image2);
 		this.displayImage = this.sitCat;
-		this.positionX -= this.sitCat.getWidth();
-		this.positionY -= this.sitCat.getHeight();
+		this.positionX -= this.sitCat.getWidth() + 40;
+		this.positionY -= this.sitCat.getHeight() + 20;
 		sommeil = 50;
 		faim = 50;
 	}
@@ -40,8 +40,8 @@ public class Cat {
 		this.used = null;
 		this.positionX = room.getPositionX() + room.getWidth();
 		this.positionY = room.getPositionY() + room.getHeight();
-		this.positionX -= this.displayImage.getWidth();
-		this.positionY -= this.displayImage.getHeight();
+		this.positionX -= this.displayImage.getWidth() + 40;
+		this.positionY -= this.displayImage.getHeight() + 20;
 	}
 	
 	public void minusFaim(){

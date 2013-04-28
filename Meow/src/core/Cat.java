@@ -117,6 +117,14 @@ public class Cat {
 	public Usable getUsed() {
 		return used;
 	}
+	
+	public int getSommeil(){
+		return sommeil;
+	}
+	
+	public int getHunger(){
+		return faim;
+	}
 
 	public void setUsed(Usable used) {
 		this.used = used;

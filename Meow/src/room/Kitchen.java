@@ -33,6 +33,13 @@ public class Kitchen extends Room{
 			b.plein = true;
 			timer = 0;
 		}
+		
+		if(Game.cat.getRoom().equals(this) && getObj().get(1).equals(Game.cat.getUsed())){
+			Human.frustration += 15;
+			Game.cat.setUsed(null);
+			Game.cat.goTo(this);
+			Game.acuteMeow.play();
+		}
 	}
 	
 	@Override

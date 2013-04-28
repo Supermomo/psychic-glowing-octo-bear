@@ -13,9 +13,10 @@ public class Table extends Usable {
 	
 	@Override
 	public void action(Cat cat) {
+		cat.setImage(cat.getSleeppingCat());
 		cat.setUsed(this);
 		cat.setPositionX(getPositionX()+getWidth()/2 - cat.getImage().getWidth()/2);
-		cat.setPositionY(getPositionY()+getHeight()/2 - cat.getImage().getHeight()/2);
+		cat.setPositionY(getPositionY()+getHeight()/2 - cat.getImage().getHeight()/2 - 25);
 	}
 
 }

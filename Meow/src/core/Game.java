@@ -14,12 +14,14 @@ import objetcs.Usable;
 
 import org.lwjgl.opengl.Drawable;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -60,8 +62,15 @@ public class Game extends BasicGameState
 	String imgCatLong = "rsrc/cat_long.png";
 	String imgBackground = "rsrc/background.png";
 	
+	String imgFaim = "rsrc/hunger.png";
+	String imgSleep = "rsrc/sleep.png";
+	String imgAnger = "rsrc/anger.png";
 	
 	Image background;
+	
+	Image sleep;
+	Image anger;
+	Image hunger;
 	
 	Image cursor; 
 	Image cursorDown;
@@ -98,6 +107,11 @@ public class Game extends BasicGameState
 		map.getRooms().add(kitchen);
 		lounge = new Lounge(0, 350, imgLounge);
 		map.getRooms().add(lounge);
+		
+		//Jauge
+		anger = new Image(imgAnger);
+		hunger = new Image(imgFaim);
+		sleep = new Image(imgSleep);
 		
 		//Objects
 		Bed bed1 = new Bed(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, imgBed);
@@ -161,6 +175,18 @@ public class Game extends BasicGameState
 		mom.draw(g);
 		girl.draw(g);
 		cat.draw(g);
+		
+		g.setColor(Color.green);
+		g.fillRect(150, 600, 40+(int)1.5*cat.getHunger(), 60);
+		g.drawImage(hunger, 150, 600);
+		
+		g.setColor(Color.blue);
+		g.fillRect(500, 600, 40+(int)1.5*cat.getSommeil(), 60);
+		g.drawImage(sleep, 500, 600);
+		
+		g.setColor(Color.red);
+		g.fillRect(800, 200, 60, 10+(int)1.5*Human.frustration);
+		g.drawImage(anger, 800, 200);
 	}
 
 	@Override
@@ -268,6 +294,7 @@ public class Game extends BasicGameState
 			if (cat.getUsed() instanceof Couch) {
 				cat.plusSommeil(2);
 			}
+			cat.timer = 0;
 		}
 		
 		

@@ -12,7 +12,7 @@ public class Run {
 		try 
 		{
 			AppGameContainer app = new AppGameContainer(new Holder("Meooooooooooow !!!"));
-			app.setDisplayMode(800, 600, false);
+			app.setDisplayMode(860, 660, false);
 			app.setTargetFrameRate(60);
 			app.setVerbose(false);
 			app.setShowFPS(false);

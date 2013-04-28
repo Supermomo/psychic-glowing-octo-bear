@@ -19,6 +19,7 @@ public class Holder extends StateBasedGame
 		this.addState(new KilledByGirl());
 		this.addState(new KilledByOven());
 		this.addState(new Generique());
+		this.addState(new Victory());
 		this.enterState(0);
 	}
 

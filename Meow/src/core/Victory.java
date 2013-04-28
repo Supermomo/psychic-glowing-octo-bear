@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-public class KilledByOven extends BasicGameState{
+public class Victory extends BasicGameState{
 
 	Image fond;
 	Music sound;
@@ -19,7 +19,7 @@ public class KilledByOven extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		fond = new Image("rsrc/micro_kill.png");
+		fond = new Image("rsrc/ironcat.png");
 	}
 
 	@Override
@@ -31,8 +31,9 @@ public class KilledByOven extends BasicGameState{
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
+		
 		if(sound == null){
-			sound = new Music("rsrc/girlDeath.ogg");
+			sound = new Music("rsrc/victory.ogg");
 			sound.loop();
 		}
 		
@@ -47,7 +48,7 @@ public class KilledByOven extends BasicGameState{
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 5;
 	}
 
 }

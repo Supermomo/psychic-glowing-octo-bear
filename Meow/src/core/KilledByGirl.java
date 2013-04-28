@@ -33,7 +33,7 @@ public class KilledByGirl extends BasicGameState{
 			throws SlickException {
 		
 		if(sound == null){
-			sound = new Music("rsrc/girlDeath.ogg");
+			sound = new Music("rsrc/deathmetal.ogg");
 			sound.loop();
 		}
 		

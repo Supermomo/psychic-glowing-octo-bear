@@ -263,6 +263,10 @@ public class Game extends BasicGameState
 			end(arg1);
 		}
 		
+		if(cat.getHunger() > 90 && cat.getSommeil() > 90){
+			end(arg1);
+		}
+		
 		mouseTimer += arg2;
 		
 		dad.timer += arg2;
@@ -431,6 +435,8 @@ public class Game extends BasicGameState
 	private void end(StateBasedGame sbg){
 		if(Human.frustration < 100)
 			sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
+		else if (cat.getHunger() > 90 && cat.getSommeil() > 90)
+			sbg.enterState(5, new FadeOutTransition(), new FadeInTransition());
 		else
 			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
 		mainMusic.stop();

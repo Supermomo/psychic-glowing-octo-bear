@@ -28,7 +28,11 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.opengl.CursorLoader;
 import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.Transition;
 
 import room.Bedroom;
 import room.Kitchen;
@@ -103,8 +107,10 @@ public class Game extends BasicGameState
 	public static Human girl;
 	
 	public static Cat cat;
+	public boolean catIsDead;
 	
 	Sound normalMeow;
+	Music mainMusic;
 	
 	@Override
 	public int getID() {
@@ -129,6 +135,7 @@ public class Game extends BasicGameState
 		hunger = new Image(imgFaim);
 		sleep = new Image(imgSleep);
 		danger = new Image(imgDanger);
+		catIsDead = false;
 		
 		//Objects
 		Bed bed1 = new Bed(bedroom1.getPositionX()+160, bedroom1.getPositionY()+10, imgBed);
@@ -187,10 +194,6 @@ public class Game extends BasicGameState
 		mouseTimer = 0;
 		
 		background = new Image(imgBackground);
-		
-		//music 
-		Music mainMusic = new Music("rsrc/main.ogg");
-	    mainMusic.loop();
 	    
 	    normalMeow = new Sound("rsrc/normalMeow.ogg");
 	}
@@ -236,7 +239,12 @@ public class Game extends BasicGameState
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-
+		if(mainMusic == null){
+			//music 
+			mainMusic = new Music("rsrc/main.ogg");
+		    mainMusic.loop();
+		}
+		
 		mouseTimer += arg2;
 		
 		dad.timer += arg2;
@@ -261,91 +269,99 @@ public class Game extends BasicGameState
 			girl.getRoom().leave(girl);
 			girl.update();
 			girl.timer = 0;
+			if(girl.getRoom() == cat.getRoom() && girl.getRoom().getHumans() == 1)
+				end(arg1);
 		}
 		
-		if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && mouseTimer > 500){
-			mouseTimer = 0;
-			if(!cursorDownActivated){
-				arg0.setMouseCursor(CDown, cursorOffsetx, cursorOffsety);
-				cursorDownActivated = true;
-				cursorRegularActivated = false;
-				cursorUpActivated = false;
-			}
-			int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
-			
-			if(roomIndex == -1){
-				
-				System.out.println("Unusable room !");
-				
-			}else{
-				
-				Room ro = map.getRooms().get(roomIndex);
-				
-				if(roomIndex == map.getRooms().indexOf(cat.getRoom())){
-					
-					int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
-							arg0.getInput().getMouseY(), ro);
-					
-					if (objIndex == -1) {
-						System.out.println("Unusable object !");
-					}else {
-						
-						try {
-							if (!((cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)
-									|| (cat.getRoom() instanceof Bedroom && cat.getRoom().getHumans() > 0))) {
-								cat.action((Usable)ro.getObj().get(objIndex));
-								if(normalMeow.playing()){
-									normalMeow.stop();
-								}
-								normalMeow.play();
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					
-				} else {
-					cat.goTo(ro);
+		if(!catIsDead){
+			if(arg0.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && mouseTimer > 500){
+				mouseTimer = 0;
+				if(!cursorDownActivated){
+					arg0.setMouseCursor(CDown, cursorOffsetx, cursorOffsety);
+					cursorDownActivated = true;
+					cursorRegularActivated = false;
+					cursorUpActivated = false;
 				}
-
+				int roomIndex = getClickedRoom(arg0.getInput().getMouseX(), arg0.getInput().getMouseY());
 				
-			}
-
-		}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
-			if(!cursorUpActivated){
+				if(roomIndex == -1){
+					
+					System.out.println("Unusable room !");
+					
+				}else{
+					
+					Room ro = map.getRooms().get(roomIndex);
+					
+					if(roomIndex == map.getRooms().indexOf(cat.getRoom())){
+						
+						int objIndex = getClickedObject(arg0.getInput().getMouseX(), 
+								arg0.getInput().getMouseY(), ro);
+						
+						if (objIndex == -1) {
+							System.out.println("Unusable object !");
+						}else {
+							
+							try {
+								if (!((cat.getRoom() instanceof Lounge && cat.getRoom().getHumans() > 1)
+										|| (cat.getRoom() instanceof Bedroom && cat.getRoom().getHumans() > 0))) {
+									cat.action((Usable)ro.getObj().get(objIndex));
+									if(normalMeow.playing()){
+										normalMeow.stop();
+									}
+									normalMeow.play();
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+						
+					} else {
+						cat.goTo(ro);
+					}
+	
+					
+				}
+	
+			}else if(checkIfHover(arg0.getInput().getMouseX(), arg0.getInput().getMouseY())){
+				if(!cursorUpActivated){
+					
+					arg0.setMouseCursor(CUp, cursorOffsetx, cursorOffsety);
+					cursorDownActivated = false;
+					cursorRegularActivated = false;
+					cursorUpActivated = true;
+				}
 				
-				arg0.setMouseCursor(CUp, cursorOffsetx, cursorOffsety);
-				cursorDownActivated = false;
-				cursorRegularActivated = false;
-				cursorUpActivated = true;
+			}else {
+				if(!cursorRegularActivated){
+					
+					arg0.setMouseCursor(Cregular, cursorOffsetx, cursorOffsety);
+					cursorDownActivated = false;
+					cursorRegularActivated = true;
+					cursorUpActivated = false;
+					
+				}
 			}
 			
-		}else {
-			if(!cursorRegularActivated){
-				
-				arg0.setMouseCursor(Cregular, cursorOffsetx, cursorOffsety);
-				cursorDownActivated = false;
-				cursorRegularActivated = true;
-				cursorUpActivated = false;
-				
+			// Gestion du cat
+			if(cat.timer > 2000)
+			{
+				cat.minusFaim();
+				cat.minusSommeil();
+				if (cat.getUsed() instanceof Bed) {
+					cat.plusSommeil(3);
+				}
+				if (cat.getUsed() instanceof Couch) {
+					cat.plusSommeil(2);
+				}
+				cat.timer = 0;
+				if(Human.frustration > 0)
+					Human.frustration--;
+				if(cat.getSommeil() == 0)
+					catIsDead = true;
+				if(cat.getHunger() == 0)
+					catIsDead = true;
 			}
 		}
-		
-		// Gestion du cat
-		if(cat.timer > 2000)
-		{
-			cat.minusFaim();
-			cat.minusSommeil();
-			if (cat.getUsed() instanceof Bed) {
-				cat.plusSommeil(3);
-			}
-			if (cat.getUsed() instanceof Couch) {
-				cat.plusSommeil(2);
-			}
-			cat.timer = 0;
-		}
-		
-		
 	}
 	
 	private boolean checkIfHover(int cursorX, int cursorY){
@@ -394,6 +410,13 @@ public class Game extends BasicGameState
 			}
 		}
 		return -1;
+	}
+	
+	private void end(StateBasedGame sbg){
+		if(Human.frustration < 100)
+			sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
+		else
+			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
 	}
 
 }

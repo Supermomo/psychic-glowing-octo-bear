@@ -449,5 +449,13 @@ public class Game extends BasicGameState
 			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
 		mainMusic.stop();
 	}
+	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		init(container, game);
+		super.enter(container, game);
+		
+	}
 
 }

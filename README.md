@@ -1,2 +1,11 @@
-psychic-glowing-octo-bear
-=========================
+Curiosity
+=========
+
+Curiosity killed the cat....
+
+You need to fill at least 90% of your hunger and sleepiness bars.
+You can sleep on a bed, wich is better than sleeping on the sofa, but unsafer...
+Yeah because if you annoy too much the humans, you gonna die...
+Oh and by the way... Avoid being in the same room alone with Curiosity...
+
+Point and click ! And enjoy :D
